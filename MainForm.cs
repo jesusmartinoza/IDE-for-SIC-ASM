@@ -32,7 +32,7 @@ namespace IDE_for_SIC_ASM
         */
         private void test()
         {
-            string line = "SUM    START    4000H\n FIRST LDX ZERO\n LDA ZERO\n END";
+            string line = "SUM    START    4000\nFIRST LDX ZERO\n LDA ZERO\n END";
             SicGrammarLexer lex = new SicGrammarLexer(new AntlrInputStream(line + Environment.NewLine));
             //CREAMOS UN LEXER CON LA CADENA QUE ESCRIBIO EL USUARIO
             CommonTokenStream tokens = new CommonTokenStream(lex);
