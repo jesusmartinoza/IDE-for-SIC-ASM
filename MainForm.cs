@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Antlr4.Runtime;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using System.IO;
 
 namespace IDE_for_SIC_ASM
 {
@@ -40,6 +41,26 @@ namespace IDE_for_SIC_ASM
             SicGrammarParser parser = new SicGrammarParser(tokens);
             //CREAMOS EL PARSER CON LOS TOKENS CREADOS
             parser.programa();
+        }
+
+        private void OpenFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                string contents = File.ReadAllText(op.FileName);
+                List<char> depurer = contents.ToCharArray().ToList();
+                depurer.RemoveAll(pred => pred == '\r');
+                string result = string.Join("", depurer.ToArray()); //sin /r
+
+                textBox1.Text = result;
+
+                SicGrammarLexer lex = new SicGrammarLexer(new AntlrInputStream(result + Environment.NewLine));
+                CommonTokenStream tokens = new CommonTokenStream(lex);
+                SicGrammarParser parser = new SicGrammarParser(tokens);
+
+                parser.programa();
+            }
         }
     }
 }
