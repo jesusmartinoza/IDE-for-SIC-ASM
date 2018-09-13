@@ -11,12 +11,12 @@ options {
  */
 
 programa: inicio (proposicion)+  fin;
-inicio: ID SEP 'START' SEP (NUMD | NUMHH) FINL;
+inicio: ID SEP 'START' SEP NUM FINL;
 fin: SEP 'END' (SEP ID)? FINL?;
 proposicion: (instruccion | directiva | RSUB) FINL;
-instruccion: ID? SEP INSTRUCCIONES SEP opinstruccion ;
-directiva: ID? SEP (BYTE | TIPODIRECTIVA SEP  OPDIRECTIVA) ;
-opinstruccion: ID ',X'?;
+instruccion: ID? SEP INSTRUCCIONES SEP opinstruccion;
+directiva: ID? SEP (BYTE | (TIPODIRECTIVA SEP NUM));
+opinstruccion: ID (',' ' '* 'X')?;
 
 
 /*
@@ -24,15 +24,15 @@ opinstruccion: ID ',X'?;
  */
 
 
-INSTRUCCIONES :('ADD'|'AND'|'COMP'|'DIV'|'J'|'JEQ'|'JSUB'|'LDA'|'LDCH'|'LDL'|'LDX'|'MUL'|'OR'|'RD'|'STA'|'STCH'|'STL'|'STSW'|'STX'|'SUB'|'TD');
+INSTRUCCIONES :('ADD'|'AND'|'COMP'|'DIV'|'J'| 'JLT' | 'JGT'|'JEQ'|'JSUB'|'LDA'|'LDCH'|'LDL'|'LDX'|'MUL'|'OR'|'RD'|'STA'|'STCH'|'STL'|'STSW'|'STX'|'SUB'|'TD' | 'TIX' | 'WD');
 TIPODIRECTIVA: ('WORD'|'RESB'|'RESW');
 BYTE :	'BYTE' SEP ('C\'' ID '\'' | 'X\'' NUMH '\'');
-NUMD : ('0'..'9')+;	
-OPDIRECTIVA: NUMD | NUMH ('h' |'H');
+NUM : ('0'..'9' | ('A' .. 'F'))+ ('h' | 'H')?;	
+//OPDIRECTIVA: NUMD | NUMH;
 FINL: '\n';
-NUMH: (NUMD |'A' |'B' |'C' |'D' | 'E'| 'F' )+;
+NUMH: ('0'..'9' | ('A' .. 'F'))+;
 NUMHH : NUMH ('h' | 'H' );
 ID : (('a'..'z'|'A'..'Z')+ ('0'..'9')*)+;
-SEP	:(' ' |'\t')+; 
-RSUB 	: SEP 'RSUB' SEP?;
+SEP:(' ' |'\t')+; 
+RSUB: SEP 'RSUB' SEP?;
 //END: 'END';
