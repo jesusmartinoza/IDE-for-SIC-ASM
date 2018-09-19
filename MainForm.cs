@@ -23,15 +23,16 @@ namespace IDE_for_SIC_ASM
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Pink800, Primary.Pink900, Primary.Blue100, Accent.Yellow400, TextShade.WHITE);
 
+            BackColor = Color.FromArgb(66, 66, 80);
         }
 
         private void OpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
 
-            textBox1.Text = "";
+            tbErrors.Text = "";
             if (op.ShowDialog() == DialogResult.OK)
             {
                 string contents = File.ReadAllText(op.FileName);
@@ -52,8 +53,8 @@ namespace IDE_for_SIC_ASM
                 {
                     if (!error.Message.Contains("input ' '"))
                     {
-                        textBox1.Text += @"Linea 1 con error: " + error.Message;
-                        textBox1.Text += "\r\n";
+                        tbErrors.Text += @"Linea 1 con error: " + error.Message;
+                        tbErrors.Text += "\r\n";
                     }
                 }
 
@@ -72,8 +73,8 @@ namespace IDE_for_SIC_ASM
                     {
                         if (!error.Message.Contains("input ' '"))
                         {
-                            textBox1.Text += @"Linea " + (i+1) + " con error: " + error.Message;
-                            textBox1.Text += "\r\n";
+                            tbErrors.Text += @"Linea " + (i+1) + " con error: " + error.Message;
+                            tbErrors.Text += "\r\n";
                         }
                     }
                 }
@@ -92,14 +93,14 @@ namespace IDE_for_SIC_ASM
                 {
                     if (!error.Message.Contains("input ' '"))
                     {
-                        textBox1.Text += @"Linea " + (lines.Count + 1) + " con error: " + error.Message;
+                        tbErrors.Text += @"Linea " + (lines.Count + 1) + " con error: " + error.Message;
                     }
                 }
 
-                if (textBox1.Text == "")
+                if (tbErrors.Text == "")
                     MessageBox.Show("Your grammar rules! ");
                 else
-                    File.WriteAllText("output.txt", textBox1.Text);
+                    File.WriteAllText("output.txt", tbErrors.Text);
             }
         }
     }
