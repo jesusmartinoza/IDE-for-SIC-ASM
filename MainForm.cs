@@ -11,6 +11,7 @@ using Antlr4.Runtime;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System.IO;
+using Antlr4.Runtime.Tree;
 
 namespace IDE_for_SIC_ASM
 {
@@ -39,6 +40,7 @@ namespace IDE_for_SIC_ASM
             tbErrors.Text = "";
             string contents = File.ReadAllText(CurrentFileName.Text);
             List<String> lines = contents.Replace("\r", " ").Split('\n').ToList();
+            bool lineWithError = false;
 
             // Parse first line
             SicGrammarLexer lex = new SicGrammarLexer(new AntlrInputStream(lines[0] + Environment.NewLine));
@@ -58,27 +60,38 @@ namespace IDE_for_SIC_ASM
                     tbErrors.Text += "\r\n";
                 }
             }
-
+            
             // Parse ASM content
             for (int i = 1; i < lines.Count - 1; i++)
             {
                 lex = new SicGrammarLexer(new AntlrInputStream(lines[i] + Environment.NewLine));
                 tokens = new CommonTokenStream(lex);
                 parser = new SicGrammarParser(tokens);
+                parser.BuildParseTree = true;
                 parser.AddErrorListener(new MyErrorListener());
 
                 try
                 {
+                    var tokensaa = lex.GetAllTokens();
+                    foreach (var t in tokensaa)
+                    {
+                        String a = parser.Vocabulary.GetDisplayName(t.Type);
+                        Console.WriteLine(a);
+                    }
                     parser.proposicion();
                 }
                 catch (Exception error)
                 {
-                    if (!error.Message.Contains("input ' '"))
+                    if (!error.Message.Contains("input ' '") /*Filtrar EOF*/)
                     {
                         tbErrors.Text += @"Linea " + (i + 1) + " con error: " + error.Message;
                         tbErrors.Text += "\r\n";
+                        lineWithError = true;
                     }
+                } finally
+                {
                 }
+
             }
 
             // Parse END line

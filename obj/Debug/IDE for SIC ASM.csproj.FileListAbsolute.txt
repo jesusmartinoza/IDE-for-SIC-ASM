@@ -48,3 +48,5 @@ C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for
 C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.csproj.CoreCompileInputs.cache
 C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.exe
 C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.pdb
+C:\Users\hongo\Documents\Programacion de sistemas\IDE for SIC ASM\IDE for SIC ASM\bin\Debug\FastColoredTextBox.dll
+C:\Users\hongo\Documents\Programacion de sistemas\IDE for SIC ASM\IDE for SIC ASM\bin\Debug\FastColoredTextBox.xml

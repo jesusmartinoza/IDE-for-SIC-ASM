@@ -131,7 +131,6 @@
             this.TextBoxEditor.CharWidth = 8;
             this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
             this.TextBoxEditor.IsReplaceMode = false;
             this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
@@ -189,7 +188,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(812, 443);
+            this.tabPage2.Size = new System.Drawing.Size(812, 420);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SIC output";
             this.tabPage2.UseVisualStyleBackColor = true;
