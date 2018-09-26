@@ -25,12 +25,13 @@ namespace IDE_for_SIC_ASM
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Pink800, Primary.Pink900, Primary.Blue100, Accent.Yellow400, TextShade.WHITE);
 
-            BackColor = Color.FromArgb(66, 66, 80);
-            //numberLabel.Font = new Font(TextBoxEditor.Font.FontFamily,
-            //                  TextBoxEditor.Font.Size);
-            numberLabel.Location = new Point(1, TextBoxEditor.Location.Y+2);
+            TextBoxEditor.BackColor = Color.FromArgb(43, 43, 43);
+            TextBoxEditor.ForeColor = Color.FromArgb(169, 183, 197);
+            TextBoxEditor.CaretColor = Color.FromArgb(169, 183, 197);
 
-            UpdateNumberLabel();
+
+            panel1.BackColor = Color.FromArgb(49, 64, 74);
+            //BackColor = Color.FromArgb(66, 66, 80);
         }
 
         private void Run_Click(object sender, EventArgs e)
@@ -133,41 +134,5 @@ namespace IDE_for_SIC_ASM
             File.WriteAllText(CurrentFileName.Text, TextBoxEditor.Text);
         }
 
-        private void UpdateNumberLabel()
-        {
-            //we get index of first visible char and 
-            //number of first visible line
-            Point pos = new Point(0, 0);
-            int firstIndex = TextBoxEditor.GetCharIndexFromPosition(pos);
-            int firstLine = TextBoxEditor.GetLineFromCharIndex(firstIndex);
-
-            //now we get index of last visible char 
-            //and number of last visible line
-            pos.X = ClientRectangle.Width;
-            pos.Y = ClientRectangle.Height;
-            int lastIndex = TextBoxEditor.GetCharIndexFromPosition(pos);
-            int lastLine = TextBoxEditor.GetLineFromCharIndex(lastIndex);
-
-            //this is point position of last visible char, we'll 
-            //use its Y value for calculating numberLabel size
-            pos = TextBoxEditor.GetPositionFromCharIndex(lastIndex);
-
-            //finally, renumber label
-            numberLabel.Text = "";
-            for (int i = firstLine; i <= lastLine; i++)
-            {
-                numberLabel.Text += i + 1 + "\n";
-            }
-        }
-
-        private void TextBoxEditor_VScroll(object sender, EventArgs e)
-        {
-           UpdateNumberLabel();
-        }
-
-        private void TextBoxEditor_TextChanged(object sender, EventArgs e)
-        {
-            UpdateNumberLabel();
-        }
     }
 }

@@ -22,3 +22,29 @@ C:\Users\Carlos SR\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.GenerateReso
 C:\Users\Carlos SR\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.CoreCompileInputs.cache
 C:\Users\Carlos SR\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.exe
 C:\Users\Carlos SR\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.pdb
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\IDE for SIC ASM.exe.config
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\IDE for SIC ASM.exe
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\IDE for SIC ASM.pdb
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\Antlr4.Runtime.Standard.xml
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.csprojResolveAssemblyReference.cache
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE_for_SIC_ASM.MainForm.resources
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE_for_SIC_ASM.Properties.Resources.resources
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.csproj.GenerateResource.Cache
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.csproj.CoreCompileInputs.cache
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.exe
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.pdb
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\FastColoredTextBox.dll
+C:\Users\jr_5o\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\FastColoredTextBox.xml
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\IDE for SIC ASM.exe.config
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\IDE for SIC ASM.exe
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\IDE for SIC ASM.pdb
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\FastColoredTextBox.dll
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\Antlr4.Runtime.Standard.xml
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\bin\Debug\FastColoredTextBox.xml
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.csprojResolveAssemblyReference.cache
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE_for_SIC_ASM.MainForm.resources
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE_for_SIC_ASM.Properties.Resources.resources
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.csproj.GenerateResource.Cache
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.csproj.CoreCompileInputs.cache
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.exe
+C:\Users\Carlos SR\Desktop\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\IDE-for-SIC-ASM-master\obj\Debug\IDE for SIC ASM.pdb

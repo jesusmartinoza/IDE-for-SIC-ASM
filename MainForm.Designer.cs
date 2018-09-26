@@ -28,54 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.Run = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.Run = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.TextBoxEditor = new System.Windows.Forms.RichTextBox();
+            this.tbErrors = new System.Windows.Forms.TextBox();
+            this.TextBoxEditor = new FastColoredTextBoxNS.FastColoredTextBox();
             this.CurrentFileName = new MaterialSkin.Controls.MaterialLabel();
             this.btnSaveFile = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnOpenFile = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tbErrors = new System.Windows.Forms.TextBox();
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            this.numberLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.materialTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // materialTabControl
-            // 
-            this.materialTabControl.Controls.Add(this.tabPage1);
-            this.materialTabControl.Controls.Add(this.tabPage2);
-            this.materialTabControl.Depth = 0;
-            this.materialTabControl.Location = new System.Drawing.Point(5, 108);
-            this.materialTabControl.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabControl.Name = "materialTabControl";
-            this.materialTabControl.SelectedIndex = 0;
-            this.materialTabControl.Size = new System.Drawing.Size(820, 323);
-            this.materialTabControl.TabIndex = 3;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.numberLabel);
-            this.tabPage1.Controls.Add(this.Run);
-            this.tabPage1.Controls.Add(this.TextBoxEditor);
-            this.tabPage1.Controls.Add(this.CurrentFileName);
-            this.tabPage1.Controls.Add(this.btnSaveFile);
-            this.tabPage1.Controls.Add(this.btnOpenFile);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(812, 297);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Editor";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // Run
             // 
             this.Run.Depth = 0;
-            this.Run.Location = new System.Drawing.Point(714, 6);
+            this.Run.Location = new System.Drawing.Point(730, 51);
             this.Run.MouseState = MaterialSkin.MouseState.HOVER;
             this.Run.Name = "Run";
             this.Run.Primary = true;
@@ -85,20 +60,94 @@
             this.Run.UseVisualStyleBackColor = true;
             this.Run.Click += new System.EventHandler(this.Run_Click);
             // 
+            // materialTabSelector1
+            // 
+            this.materialTabSelector1.BaseTabControl = this.materialTabControl;
+            this.materialTabSelector1.Depth = 0;
+            this.materialTabSelector1.Location = new System.Drawing.Point(-2, 62);
+            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabSelector1.Name = "materialTabSelector1";
+            this.materialTabSelector1.Size = new System.Drawing.Size(834, 40);
+            this.materialTabSelector1.TabIndex = 4;
+            this.materialTabSelector1.Text = "materialTabSelector1";
+            // 
+            // materialTabControl
+            // 
+            this.materialTabControl.Controls.Add(this.tabPage1);
+            this.materialTabControl.Controls.Add(this.tabPage2);
+            this.materialTabControl.Depth = 0;
+            this.materialTabControl.Location = new System.Drawing.Point(3, 0);
+            this.materialTabControl.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabControl.Name = "materialTabControl";
+            this.materialTabControl.SelectedIndex = 0;
+            this.materialTabControl.Size = new System.Drawing.Size(820, 446);
+            this.materialTabControl.TabIndex = 3;
+            this.materialTabControl.TabStop = false;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.BackgroundImage = global::IDE_for_SIC_ASM.Properties.Resources.FondoBack;
+            this.tabPage1.Controls.Add(this.tbErrors);
+            this.tabPage1.Controls.Add(this.TextBoxEditor);
+            this.tabPage1.Controls.Add(this.CurrentFileName);
+            this.tabPage1.Controls.Add(this.btnSaveFile);
+            this.tabPage1.Controls.Add(this.btnOpenFile);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(812, 420);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Editor & Errors";
+            // 
+            // tbErrors
+            // 
+            this.tbErrors.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.tbErrors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbErrors.Location = new System.Drawing.Point(6, 296);
+            this.tbErrors.Multiline = true;
+            this.tbErrors.Name = "tbErrors";
+            this.tbErrors.ReadOnly = true;
+            this.tbErrors.Size = new System.Drawing.Size(800, 119);
+            this.tbErrors.TabIndex = 11;
+            // 
             // TextBoxEditor
             // 
-            this.TextBoxEditor.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxEditor.Location = new System.Drawing.Point(30, 45);
+            this.TextBoxEditor.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.TextBoxEditor.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.TextBoxEditor.BackBrush = null;
+            this.TextBoxEditor.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxEditor.CharHeight = 14;
+            this.TextBoxEditor.CharWidth = 8;
+            this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
+            this.TextBoxEditor.IsReplaceMode = false;
+            this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
+            this.TextBoxEditor.Location = new System.Drawing.Point(6, 44);
             this.TextBoxEditor.Name = "TextBoxEditor";
-            this.TextBoxEditor.Size = new System.Drawing.Size(775, 247);
-            this.TextBoxEditor.TabIndex = 8;
-            this.TextBoxEditor.Text = "";
-            this.TextBoxEditor.VScroll += new System.EventHandler(this.TextBoxEditor_VScroll);
-            this.TextBoxEditor.TextChanged += new System.EventHandler(this.TextBoxEditor_TextChanged);
+            this.TextBoxEditor.Paddings = new System.Windows.Forms.Padding(0);
+            this.TextBoxEditor.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.TextBoxEditor.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("TextBoxEditor.ServiceColors")));
+            this.TextBoxEditor.Size = new System.Drawing.Size(799, 245);
+            this.TextBoxEditor.TabIndex = 10;
+            this.TextBoxEditor.Zoom = 100;
             // 
             // CurrentFileName
             // 
             this.CurrentFileName.AutoSize = true;
+            this.CurrentFileName.BackColor = System.Drawing.Color.Transparent;
             this.CurrentFileName.Depth = 0;
             this.CurrentFileName.Font = new System.Drawing.Font("Roboto", 11F);
             this.CurrentFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -137,79 +186,54 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.tbErrors);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(812, 297);
+            this.tabPage2.Size = new System.Drawing.Size(812, 443);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Errors";
+            this.tabPage2.Text = "SIC output";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tbErrors
+            // panel1
             // 
-            this.tbErrors.BackColor = System.Drawing.SystemColors.Window;
-            this.tbErrors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbErrors.Location = new System.Drawing.Point(6, 6);
-            this.tbErrors.Multiline = true;
-            this.tbErrors.Name = "tbErrors";
-            this.tbErrors.ReadOnly = true;
-            this.tbErrors.Size = new System.Drawing.Size(800, 285);
-            this.tbErrors.TabIndex = 0;
-            // 
-            // materialTabSelector1
-            // 
-            this.materialTabSelector1.BaseTabControl = this.materialTabControl;
-            this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Location = new System.Drawing.Point(-2, 62);
-            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(834, 40);
-            this.materialTabSelector1.TabIndex = 4;
-            this.materialTabSelector1.Text = "materialTabSelector1";
-            // 
-            // numberLabel
-            // 
-            this.numberLabel.AutoSize = true;
-            this.numberLabel.BackColor = System.Drawing.Color.White;
-            this.numberLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numberLabel.Location = new System.Drawing.Point(3, 45);
-            this.numberLabel.Name = "numberLabel";
-            this.numberLabel.Size = new System.Drawing.Size(17, 16);
-            this.numberLabel.TabIndex = 10;
-            this.numberLabel.Text = "#";
+            this.panel1.Controls.Add(this.materialTabControl);
+            this.panel1.Location = new System.Drawing.Point(-2, 102);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(834, 446);
+            this.panel1.TabIndex = 10;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(831, 433);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(831, 547);
+            this.Controls.Add(this.Run);
             this.Controls.Add(this.materialTabSelector1);
-            this.Controls.Add(this.materialTabControl);
+            this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "IDE for SIC STANDARD";
             this.materialTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        private MaterialSkin.Controls.MaterialRaisedButton Run;
+        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
+        private System.Windows.Forms.Panel panel1;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
-        private System.Windows.Forms.TextBox tbErrors;
-        private MaterialSkin.Controls.MaterialRaisedButton btnOpenFile;
-        private MaterialSkin.Controls.MaterialRaisedButton btnSaveFile;
+        private FastColoredTextBoxNS.FastColoredTextBox TextBoxEditor;
         private MaterialSkin.Controls.MaterialLabel CurrentFileName;
-        private System.Windows.Forms.RichTextBox TextBoxEditor;
-        private MaterialSkin.Controls.MaterialRaisedButton Run;
-        private System.Windows.Forms.Label numberLabel;
+        private MaterialSkin.Controls.MaterialRaisedButton btnSaveFile;
+        private MaterialSkin.Controls.MaterialRaisedButton btnOpenFile;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox tbErrors;
     }
 }
 
