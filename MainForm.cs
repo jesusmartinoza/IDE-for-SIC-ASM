@@ -21,6 +21,9 @@ namespace IDE_for_SIC_ASM
         {
             public SicGrammarParser parser;
             public IList<IToken> tokens;
+            public String type;
+            public int num;
+            public bool success;
         }
 
         public MainForm()
@@ -44,6 +47,7 @@ namespace IDE_for_SIC_ASM
         private ParseResult parseLine(String line, int lineNumber, String type)
         {
             bool success = true;
+            var result = new ParseResult();
             SicGrammarLexer lex = new SicGrammarLexer(new AntlrInputStream(line + Environment.NewLine));
             CommonTokenStream tokens = new CommonTokenStream(lex);
             SicGrammarParser parser = new SicGrammarParser(tokens);
@@ -68,22 +72,35 @@ namespace IDE_for_SIC_ASM
                 }
             }
 
-            var result = new ParseResult
+
+            result.parser = parser;
+            result.tokens = tokens.GetTokens();
+            result.success = success;
+            result.num = 40;
+            
+            foreach (var t in tokens.GetTokens())
             {
-                parser = parser,
-                tokens = tokens.GetTokens()
-            };
+                String tokenType = parser.Vocabulary.GetDisplayName(t.Type);
+
+                if (tokenType.Equals("INSTRUCCIONES"))
+                    result.type = "INSTRUCTION";
+                if (tokenType.Equals("TIPODIRECTIVA"))
+                    result.type = t.Text;
+            }
+
 
             return result;
         }
 
         private void Run_Click(object sender, EventArgs e)
         {
-            tbErrors.Text = "";
+            // Store program counters of every line
+            var PCs = new List<int>();
+            PCs.Add(0); // TODO: Direccion carga 
 
-            var PCs = new List<int>(); // Store program counters
             string contents = File.ReadAllText(CurrentFileName.Text);
             List<String> lines = contents.Replace("\r", " ").Split('\n').ToList();
+            tbErrors.Text = "";
 
             // Parse first line
             parseLine(lines[0], 0, "start");
@@ -93,10 +110,13 @@ namespace IDE_for_SIC_ASM
             {
                 var result = parseLine(lines[i], i, "body");
 
-                foreach (var t in result.tokens)
+                switch(result.type)
                 {
-                    String a = result.parser.Vocabulary.GetDisplayName(t.Type);
-                    Console.WriteLine(a);
+                    case "INSTRUCTION": PCs.Add(PCs.Last() + 3); break;
+                    case "WORD": PCs.Add(PCs.Last() + 3); break;
+                    //case "byte": PCs.Add(PCs.Last() + result.byteSize); break;
+                    case "RESB": PCs.Add(PCs.Last() + result.num); break;
+                    case "RESW": PCs.Add(PCs.Last() + result.num * 3); break;
                 }
             }
 
