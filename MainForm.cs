@@ -17,6 +17,12 @@ namespace IDE_for_SIC_ASM
 {
     public partial class MainForm : MaterialForm
     {
+        struct ParseResult
+        {
+            public SicGrammarParser parser;
+            public IList<IToken> tokens;
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -35,82 +41,67 @@ namespace IDE_for_SIC_ASM
             //BackColor = Color.FromArgb(66, 66, 80);
         }
 
-        private void Run_Click(object sender, EventArgs e)
+        private ParseResult parseLine(String line, int lineNumber, String type)
         {
-            tbErrors.Text = "";
-            string contents = File.ReadAllText(CurrentFileName.Text);
-            List<String> lines = contents.Replace("\r", " ").Split('\n').ToList();
-            bool lineWithError = false;
-
-            // Parse first line
-            SicGrammarLexer lex = new SicGrammarLexer(new AntlrInputStream(lines[0] + Environment.NewLine));
+            bool success = true;
+            SicGrammarLexer lex = new SicGrammarLexer(new AntlrInputStream(line + Environment.NewLine));
             CommonTokenStream tokens = new CommonTokenStream(lex);
             SicGrammarParser parser = new SicGrammarParser(tokens);
             parser.AddErrorListener(new MyErrorListener());
 
             try
             {
-                parser.inicio();
+                switch (type)
+                {
+                    case "start": parser.inicio(); break;
+                    case "body": parser.proposicion(); break;
+                    case "end": parser.fin(); break;
+                }
             }
             catch (Exception error)
             {
                 if (!error.Message.Contains("input ' '"))
                 {
-                    tbErrors.Text += @"Linea 1 con error: " + error.Message;
+                    tbErrors.Text += @"Linea " + lineNumber + " con error: " + error.Message;
                     tbErrors.Text += "\r\n";
+                    success = false;
                 }
             }
-            
+
+            var result = new ParseResult
+            {
+                parser = parser,
+                tokens = tokens.GetTokens()
+            };
+
+            return result;
+        }
+
+        private void Run_Click(object sender, EventArgs e)
+        {
+            tbErrors.Text = "";
+
+            var PCs = new List<int>(); // Store program counters
+            string contents = File.ReadAllText(CurrentFileName.Text);
+            List<String> lines = contents.Replace("\r", " ").Split('\n').ToList();
+
+            // Parse first line
+            parseLine(lines[0], 0, "start");
+           
             // Parse ASM content
             for (int i = 1; i < lines.Count - 1; i++)
             {
-                lex = new SicGrammarLexer(new AntlrInputStream(lines[i] + Environment.NewLine));
-                tokens = new CommonTokenStream(lex);
-                parser = new SicGrammarParser(tokens);
-                parser.BuildParseTree = true;
-                parser.AddErrorListener(new MyErrorListener());
+                var result = parseLine(lines[i], i, "body");
 
-                try
+                foreach (var t in result.tokens)
                 {
-                    var tokensaa = lex.GetAllTokens();
-                    foreach (var t in tokensaa)
-                    {
-                        String a = parser.Vocabulary.GetDisplayName(t.Type);
-                        Console.WriteLine(a);
-                    }
-                    parser.proposicion();
+                    String a = result.parser.Vocabulary.GetDisplayName(t.Type);
+                    Console.WriteLine(a);
                 }
-                catch (Exception error)
-                {
-                    if (!error.Message.Contains("input ' '") /*Filtrar EOF*/)
-                    {
-                        tbErrors.Text += @"Linea " + (i + 1) + " con error: " + error.Message;
-                        tbErrors.Text += "\r\n";
-                        lineWithError = true;
-                    }
-                } finally
-                {
-                }
-
             }
 
             // Parse END line
-            lex = new SicGrammarLexer(new AntlrInputStream(lines.Last() + Environment.NewLine));
-            tokens = new CommonTokenStream(lex);
-            parser = new SicGrammarParser(tokens);
-            parser.AddErrorListener(new MyErrorListener());
-
-            try
-            {
-                parser.fin();
-            }
-            catch (Exception error)
-            {
-                if (!error.Message.Contains("input ' '"))
-                {
-                    tbErrors.Text += @"Linea " + (lines.Count + 1) + " con error: " + error.Message;
-                }
-            }
+            parseLine(lines.Last(), lines.Count, "end");
 
             if (tbErrors.Text == "")
                 MessageBox.Show("Your grammar rules! ");
