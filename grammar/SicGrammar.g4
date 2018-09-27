@@ -17,7 +17,7 @@ proposicion: (instruccion | directiva | RSUB) FINL;
 instruccion: ID? SEP INSTRUCCIONES SEP opinstruccion;
 directiva: ID? SEP (BYTE | (TIPODIRECTIVA SEP NUM));
 opinstruccion: ID (',' ' '* 'X')?;
-
+RSUB: ((ID SEP) | SEP)? 'RSUB' SEP?;
 
 /*
  * Lexer Rules
@@ -34,5 +34,4 @@ NUMH: ('0'..'9' | ('A' .. 'F'))+;
 NUMHH : NUMH ('h' | 'H' );
 ID : (('a'..'z'|'A'..'Z')+ ('0'..'9')*)+;
 SEP:(' ' |'\t')+; 
-RSUB: SEP 'RSUB' SEP?;
 //END: 'END';

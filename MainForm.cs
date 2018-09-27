@@ -12,6 +12,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System.IO;
 using Antlr4.Runtime.Tree;
+using System.Globalization;
 
 namespace IDE_for_SIC_ASM
 {
@@ -22,8 +23,12 @@ namespace IDE_for_SIC_ASM
             public SicGrammarParser parser;
             public IList<IToken> tokens;
             public String type;
-            public int num;
+            public uint num;
             public bool success;
+
+            public String symbol;
+            public String instruction;
+            public String op;
         }
 
         public MainForm()
@@ -72,22 +77,50 @@ namespace IDE_for_SIC_ASM
                 }
             }
 
-
             result.parser = parser;
             result.tokens = tokens.GetTokens();
             result.success = success;
             result.num = 40;
-            
+
+            var instructDetected = false;
+
             foreach (var t in tokens.GetTokens())
             {
                 String tokenType = parser.Vocabulary.GetDisplayName(t.Type);
 
-                if (tokenType.Equals("INSTRUCCIONES"))
-                    result.type = "INSTRUCTION";
-                if (tokenType.Equals("TIPODIRECTIVA"))
-                    result.type = t.Text;
+                switch(tokenType)
+                {
+                    case "INSTRUCCIONES":
+                        result.type = "INSTRUCTION";
+                        result.instruction = t.Text;
+                        instructDetected = true;
+                        break;
+                    case "TIPODIRECTIVA":
+                        result.type = t.Text;
+                        result.instruction = t.Text;
+                        instructDetected = true;
+                        break;
+                    case "NUM":
+                        if(t.Text.Last() == 'H')
+                        {
+                            uint.TryParse(t.Text.Remove(t.Text.Count() - 1),
+                                NumberStyles.HexNumber,
+                                CultureInfo.CurrentCulture,
+                                out result.num);
+                        } else
+                        {
+                            success = uint.TryParse(t.Text,
+                                out result.num);
+                        }
+                        break;
+                    case "ID":
+                        if (instructDetected)
+                            result.op = t.Text;
+                        else
+                            result.symbol = t.Text;
+                        break;
+                }
             }
-
 
             return result;
         }
@@ -95,7 +128,7 @@ namespace IDE_for_SIC_ASM
         private void Run_Click(object sender, EventArgs e)
         {
             // Store program counters of every line
-            var PCs = new List<int>();
+            var PCs = new List<long>();
             PCs.Add(0); // TODO: Direccion carga 
 
             string contents = File.ReadAllText(CurrentFileName.Text);
