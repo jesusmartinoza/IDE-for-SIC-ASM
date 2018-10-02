@@ -49,6 +49,15 @@ namespace IDE_for_SIC_ASM
             //BackColor = Color.FromArgb(66, 66, 80);
         }
 
+        private void fillRow(int line, long PC, ParseResult result, string obj)
+        {
+            String[] data =
+            {
+                    line.ToString(), PC.ToString("X"), result.symbol, result.instruction, result.op, obj
+            };
+            gridSourceCode.Rows.Add(data);
+        }
+
         private ParseResult parseLine(String line, int lineNumber, String type)
         {
             bool success = true;
@@ -100,8 +109,28 @@ namespace IDE_for_SIC_ASM
                         result.instruction = t.Text;
                         instructDetected = true;
                         break;
+                    case "RSUB":
+                        result.instruction = "RSUB";
+                        result.type = "RSUB";
+                        break;
+                    case "'START'":
+                        result.instruction = "START";
+                        break;
+                    case "'END'":
+                        result.instruction = "END";
+                        break;
+                    case "BYTEOP":
+                        result.type = "BYTE";
+                        result.instruction = "BYTE";
+                        result.op = t.Text;
+                        result.num = (uint) t.Text.Length - 3;
+
+                        if(t.Text.First() == 'X')
+                            result.num = (uint) Math.Ceiling((double)result.num / 2);
+                        break;
                     case "NUM":
-                        if(t.Text.Last() == 'H')
+                        result.op = t.Text;
+                        if (t.Text.Last() == 'H' || t.Text.Last() == 'h')
                         {
                             uint.TryParse(t.Text.Remove(t.Text.Count() - 1),
                                 NumberStyles.HexNumber,
@@ -129,32 +158,42 @@ namespace IDE_for_SIC_ASM
         {
             // Store program counters of every line
             var PCs = new List<long>();
-            PCs.Add(0); // TODO: Direccion carga 
 
             string contents = File.ReadAllText(CurrentFileName.Text);
             List<String> lines = contents.Replace("\r", " ").Split('\n').ToList();
             tbErrors.Text = "";
+            gridSourceCode.Rows.Clear();
 
             // Parse first line
-            parseLine(lines[0], 0, "start");
-           
+            var result = parseLine(lines[0], 0, "start");
+            PCs.Add(result.num);
+            fillRow(1, PCs.First(), result, "FFFF");
+
             // Parse ASM content
             for (int i = 1; i < lines.Count - 1; i++)
             {
-                var result = parseLine(lines[i], i, "body");
+                result = parseLine(lines[i], i, "body");
 
-                switch(result.type)
+                if(result.success)
                 {
-                    case "INSTRUCTION": PCs.Add(PCs.Last() + 3); break;
-                    case "WORD": PCs.Add(PCs.Last() + 3); break;
-                    //case "byte": PCs.Add(PCs.Last() + result.byteSize); break;
-                    case "RESB": PCs.Add(PCs.Last() + result.num); break;
-                    case "RESW": PCs.Add(PCs.Last() + result.num * 3); break;
+                    switch (result.type)
+                    {
+                        case "INSTRUCTION":
+                        case "WORD":
+                        case "RSUB":
+                            PCs.Add(PCs.Last() + 3); break;
+                        case "BYTE": PCs.Add(PCs.Last() + result.num); break;
+                        case "RESB": PCs.Add(PCs.Last() + result.num); break;
+                        case "RESW": PCs.Add(PCs.Last() + result.num * 3); break;
+                    }
+
+                    fillRow(i + 1, PCs[PCs.Count - 2], result, "FFFF");
                 }
             }
 
             // Parse END line
-            parseLine(lines.Last(), lines.Count, "end");
+            result = parseLine(lines.Last(), lines.Count, "end");
+            fillRow(lines.Count, PCs.Last(), result, "FFFF");
 
             if (tbErrors.Text == "")
                 MessageBox.Show("Your grammar rules! ");

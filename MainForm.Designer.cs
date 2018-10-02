@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Run = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
@@ -41,10 +42,19 @@
             this.btnOpenFile = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gridSourceCode = new System.Windows.Forms.DataGridView();
+            this.Line = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TAG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.INSTRUCTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADDRESS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OBJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
             this.SuspendLayout();
             // 
             // Run
@@ -131,6 +141,7 @@
             this.TextBoxEditor.CharWidth = 8;
             this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
             this.TextBoxEditor.IsReplaceMode = false;
             this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
@@ -185,6 +196,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackgroundImage = global::IDE_for_SIC_ASM.Properties.Resources.FondoBack;
+            this.tabPage2.Controls.Add(this.gridSourceCode);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -195,11 +208,67 @@
             // 
             // panel1
             // 
+            this.panel1.BackgroundImage = global::IDE_for_SIC_ASM.Properties.Resources.FondoBack;
             this.panel1.Controls.Add(this.materialTabControl);
             this.panel1.Location = new System.Drawing.Point(-2, 102);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(834, 446);
             this.panel1.TabIndex = 10;
+            // 
+            // gridSourceCode
+            // 
+            this.gridSourceCode.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            this.gridSourceCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridSourceCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridSourceCode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Line,
+            this.CP,
+            this.TAG,
+            this.INSTRUCTION,
+            this.ADDRESS,
+            this.OBJ});
+            this.gridSourceCode.Location = new System.Drawing.Point(4, 4);
+            this.gridSourceCode.Name = "gridSourceCode";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridSourceCode.Size = new System.Drawing.Size(802, 389);
+            this.gridSourceCode.TabIndex = 0;
+            // 
+            // Line
+            // 
+            this.Line.HeaderText = "Line";
+            this.Line.Name = "Line";
+            // 
+            // CP
+            // 
+            this.CP.HeaderText = "CP";
+            this.CP.Name = "CP";
+            // 
+            // TAG
+            // 
+            this.TAG.HeaderText = "TAG";
+            this.TAG.Name = "TAG";
+            // 
+            // INSTRUCTION
+            // 
+            this.INSTRUCTION.HeaderText = "INSTRUCTION";
+            this.INSTRUCTION.Name = "INSTRUCTION";
+            // 
+            // ADDRESS
+            // 
+            this.ADDRESS.HeaderText = "ADDRESS";
+            this.ADDRESS.Name = "ADDRESS";
+            // 
+            // OBJ
+            // 
+            this.OBJ.HeaderText = "OBJ";
+            this.OBJ.Name = "OBJ";
             // 
             // MainForm
             // 
@@ -216,7 +285,9 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -233,6 +304,13 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenFile;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox tbErrors;
+        private System.Windows.Forms.DataGridView gridSourceCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Line;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TAG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn INSTRUCTION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ADDRESS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OBJ;
     }
 }
 
