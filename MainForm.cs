@@ -100,7 +100,6 @@ namespace IDE_for_SIC_ASM
                     case "INSTRUCCIONES":
                         result.type = "INSTRUCTION";
                         result.instruction = t.Text;
-                        result.obj += string.Format("{0:x2} ", InstructionSet.Data[t.Text]);
                         instructDetected = true;
                         break;
                     case "TIPODIRECTIVA":
@@ -232,5 +231,9 @@ namespace IDE_for_SIC_ASM
             File.WriteAllText(CurrentFileName.Text, TextBoxEditor.Text);
         }
 
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            materialTabSelector1.Width = Convert.ToInt32(this.Width * 1.1);
+        }
     }
 }
