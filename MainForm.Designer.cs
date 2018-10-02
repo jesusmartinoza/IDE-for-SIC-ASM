@@ -41,7 +41,6 @@
             this.btnSaveFile = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnOpenFile = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.gridSourceCode = new System.Windows.Forms.DataGridView();
             this.Line = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +52,6 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,18 +84,17 @@
             this.materialTabControl.Controls.Add(this.tabPage1);
             this.materialTabControl.Controls.Add(this.tabPage2);
             this.materialTabControl.Depth = 0;
-            this.materialTabControl.Location = new System.Drawing.Point(3, 0);
+            this.materialTabControl.Location = new System.Drawing.Point(12, 108);
             this.materialTabControl.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl.Name = "materialTabControl";
             this.materialTabControl.SelectedIndex = 0;
-            this.materialTabControl.Size = new System.Drawing.Size(820, 446);
+            this.materialTabControl.Size = new System.Drawing.Size(809, 427);
             this.materialTabControl.TabIndex = 3;
             this.materialTabControl.TabStop = false;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.BackgroundImage = global::IDE_for_SIC_ASM.Properties.Resources.FondoBack;
             this.tabPage1.Controls.Add(this.tbErrors);
             this.tabPage1.Controls.Add(this.TextBoxEditor);
             this.tabPage1.Controls.Add(this.CurrentFileName);
@@ -106,7 +103,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(812, 420);
+            this.tabPage1.Size = new System.Drawing.Size(801, 401);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Editor & Errors";
             // 
@@ -141,7 +138,6 @@
             this.TextBoxEditor.CharWidth = 8;
             this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
             this.TextBoxEditor.IsReplaceMode = false;
             this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
@@ -196,28 +192,18 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.BackgroundImage = global::IDE_for_SIC_ASM.Properties.Resources.FondoBack;
             this.tabPage2.Controls.Add(this.gridSourceCode);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(812, 420);
+            this.tabPage2.Size = new System.Drawing.Size(801, 401);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SIC output";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::IDE_for_SIC_ASM.Properties.Resources.FondoBack;
-            this.panel1.Controls.Add(this.materialTabControl);
-            this.panel1.Location = new System.Drawing.Point(-2, 102);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(834, 446);
-            this.panel1.TabIndex = 10;
-            // 
             // gridSourceCode
             // 
-            this.gridSourceCode.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            this.gridSourceCode.BackgroundColor = System.Drawing.SystemColors.Window;
             this.gridSourceCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridSourceCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridSourceCode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -237,18 +223,21 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridSourceCode.Size = new System.Drawing.Size(802, 389);
+            this.gridSourceCode.RowHeadersVisible = false;
+            this.gridSourceCode.Size = new System.Drawing.Size(557, 389);
             this.gridSourceCode.TabIndex = 0;
             // 
             // Line
             // 
             this.Line.HeaderText = "Line";
             this.Line.Name = "Line";
+            this.Line.Width = 32;
             // 
             // CP
             // 
             this.CP.HeaderText = "CP";
             this.CP.Name = "CP";
+            this.CP.Width = 50;
             // 
             // TAG
             // 
@@ -276,9 +265,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(831, 547);
+            this.Controls.Add(this.materialTabControl);
             this.Controls.Add(this.Run);
             this.Controls.Add(this.materialTabSelector1);
-            this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "IDE for SIC STANDARD";
             this.materialTabControl.ResumeLayout(false);
@@ -286,7 +275,6 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).EndInit();
             this.ResumeLayout(false);
 
@@ -295,7 +283,6 @@
         #endregion
         private MaterialSkin.Controls.MaterialRaisedButton Run;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
-        private System.Windows.Forms.Panel panel1;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private FastColoredTextBoxNS.FastColoredTextBox TextBoxEditor;

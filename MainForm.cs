@@ -29,6 +29,7 @@ namespace IDE_for_SIC_ASM
             public String symbol;
             public String instruction;
             public String op;
+            public String obj;
         }
 
         public MainForm()
@@ -37,23 +38,20 @@ namespace IDE_for_SIC_ASM
             // Configuracion de Material Theme
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Pink800, Primary.Pink900, Primary.Blue100, Accent.Yellow400, TextShade.WHITE);
 
             TextBoxEditor.BackColor = Color.FromArgb(43, 43, 43);
             TextBoxEditor.ForeColor = Color.FromArgb(169, 183, 197);
             TextBoxEditor.CaretColor = Color.FromArgb(169, 183, 197);
-
-
-            panel1.BackColor = Color.FromArgb(49, 64, 74);
             //BackColor = Color.FromArgb(66, 66, 80);
         }
 
-        private void fillRow(int line, long PC, ParseResult result, string obj)
+        private void fillRow(int line, long PC, ParseResult result)
         {
             String[] data =
             {
-                    line.ToString(), PC.ToString("X"), result.symbol, result.instruction, result.op, obj
+                    line.ToString(), PC.ToString("X"), result.symbol, result.instruction, result.op, result.obj
             };
             gridSourceCode.Rows.Add(data);
         }
@@ -102,6 +100,7 @@ namespace IDE_for_SIC_ASM
                     case "INSTRUCCIONES":
                         result.type = "INSTRUCTION";
                         result.instruction = t.Text;
+                        result.obj += string.Format("{0:x2} ", InstructionSet.Data[t.Text]);
                         instructDetected = true;
                         break;
                     case "TIPODIRECTIVA":
@@ -167,7 +166,7 @@ namespace IDE_for_SIC_ASM
             // Parse first line
             var result = parseLine(lines[0], 0, "start");
             PCs.Add(result.num);
-            fillRow(1, PCs.First(), result, "FFFF");
+            fillRow(1, PCs.First(), result);
 
             // Parse ASM content
             for (int i = 1; i < lines.Count - 1; i++)
@@ -187,13 +186,16 @@ namespace IDE_for_SIC_ASM
                         case "RESW": PCs.Add(PCs.Last() + result.num * 3); break;
                     }
 
-                    fillRow(i + 1, PCs[PCs.Count - 2], result, "FFFF");
+                    fillRow(i + 1, PCs[PCs.Count - 2], result);
+                } else
+                {
+                    fillRow(i + 1, PCs.Last(), result);
                 }
             }
 
             // Parse END line
             result = parseLine(lines.Last(), lines.Count, "end");
-            fillRow(lines.Count, PCs.Last(), result, "FFFF");
+            fillRow(lines.Count, PCs.Last(), result);
 
             if (tbErrors.Text == "")
                 MessageBox.Show("Your grammar rules! ");
