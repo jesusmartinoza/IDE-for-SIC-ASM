@@ -162,6 +162,7 @@ namespace IDE_for_SIC_ASM
             List<String> lines = contents.Replace("\r", " ").Split('\n').ToList();
             tbErrors.Text = "";
             gridSourceCode.Rows.Clear();
+            tabsimGrid.Rows.Clear();
 
             // Parse first line
             var result = parseLine(lines[0], 0, "start");
@@ -197,12 +198,15 @@ namespace IDE_for_SIC_ASM
             result = parseLine(lines.Last(), lines.Count, "end");
             fillRow(lines.Count, PCs.Last(), result);
 
+            tabsim = GenerateTabsim();
+            long size = PCs.Last() - PCs.First();
+            progSize.Text = size.ToString("X");
+            GenerateObj();
+
             if (tbErrors.Text == "")
                 MessageBox.Show("Your grammar rules! ");
             else
                 File.WriteAllText("output.txt", tbErrors.Text);
-
-            tabsim = GenerateTabsim();
         }
 
         private void OpenFile_Click(object sender, EventArgs e)
@@ -241,10 +245,9 @@ namespace IDE_for_SIC_ASM
 
         private Dictionary<string,string> GenerateTabsim()
         {
-            int count = gridSourceCode.RowCount;
             Dictionary<string, string> DiccOut = new Dictionary<string, string>();
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < gridSourceCode.RowCount; i++)
             {
                 if(gridSourceCode.Rows[i].Cells[2].Value != null)
                 {
@@ -252,29 +255,58 @@ namespace IDE_for_SIC_ASM
                     {
                         DiccOut.Add(gridSourceCode.Rows[i].Cells[2].Value.ToString(),
                             gridSourceCode.Rows[i].Cells[1].Value.ToString());
+
+                        String[] data =
+                        {
+                            gridSourceCode.Rows[i].Cells[2].Value.ToString(),
+                            gridSourceCode.Rows[i].Cells[1].Value.ToString()
+                        };
+                        tabsimGrid.Rows.Add(data);
                     }
                 }
             }
             return DiccOut;
         }
 
-        private Dictionary<string, string> GenerateObj()
+        private void GenerateObj()
         {
-            int count = gridSourceCode.RowCount;
-            Dictionary<string, string> DiccOut = new Dictionary<string, string>();
-
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < gridSourceCode.RowCount; i++)
             {
-                if (InstructionSet.Data.ContainsKey(gridSourceCode.Rows[i].Cells[3].Value.ToString()))
+                string objectCode = "";
+                if (gridSourceCode.Rows[i].Cells[3].Value != null)
                 {
-                    if (!DiccOut.Keys.Contains(gridSourceCode.Rows[i].Cells[2].Value.ToString()))
-                    {
-                        DiccOut.Add(gridSourceCode.Rows[i].Cells[2].Value.ToString(),
-                            gridSourceCode.Rows[i].Cells[1].Value.ToString());
+                    if (InstructionSet.Data.ContainsKey(gridSourceCode.Rows[i].Cells[3].Value.ToString()))
+                    {   //es una instruccion
+                        objectCode = InstructionSet.Data[gridSourceCode.Rows[i].Cells[3].Value.ToString()].ToString();
+                        if(gridSourceCode.Rows[i].Cells[4].Value != null)
+                        {
+                            if (tabsim.Keys.Contains(gridSourceCode.Rows[i].Cells[4].Value.ToString()))
+                            {   //Direccion en tabsim
+
+                                int intValue = int.Parse(tabsim[gridSourceCode.Rows[i].Cells[4].Value.ToString()],
+                                    System.Globalization.NumberStyles.HexNumber);
+                                //AQUI SUMAR a intValue si es X = 0 o 1 ---
+                                objectCode += intValue.ToString("X");
+                            }
+                            else
+                            {   //no encontrado -> 7fff
+                                objectCode += "7FFF";
+                            }
+                            
+                        }
+                        else
+                        {
+                            if (gridSourceCode.Rows[i].Cells[3].Value.ToString() == "RSUB")
+                                objectCode += "0000";
+                        }
+                        gridSourceCode.Rows[i].Cells[5].Value = objectCode;
+                    }
+                    else
+                    {   //es una directiva
+
                     }
                 }
             }
-            return DiccOut;
         }
     }
 }

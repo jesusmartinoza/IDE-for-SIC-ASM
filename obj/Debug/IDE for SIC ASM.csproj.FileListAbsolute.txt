@@ -63,3 +63,5 @@ C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.GenerateResource
 C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.CoreCompileInputs.cache
 C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.exe
 C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.pdb
+C:\Users\Carlos SR\IDE-for-SIC-ASM\bin\Debug\FastColoredTextBox.dll
+C:\Users\Carlos SR\IDE-for-SIC-ASM\bin\Debug\FastColoredTextBox.xml
