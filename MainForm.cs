@@ -272,19 +272,21 @@ namespace IDE_for_SIC_ASM
         {
             for (int i = 0; i < gridSourceCode.RowCount; i++)
             {
-                string objectCode = "";
+                string objectCode = "----------";
                 if (gridSourceCode.Rows[i].Cells[3].Value != null)
                 {
-                    if (InstructionSet.Data.ContainsKey(gridSourceCode.Rows[i].Cells[3].Value.ToString()))
-                    {   //es una instruccion
-                        objectCode = InstructionSet.Data[gridSourceCode.Rows[i].Cells[3].Value.ToString()].ToString();
-                        if(gridSourceCode.Rows[i].Cells[4].Value != null)
-                        {
-                            if (tabsim.Keys.Contains(gridSourceCode.Rows[i].Cells[4].Value.ToString()))
-                            {   //Direccion en tabsim
+                    var instruction = gridSourceCode.Rows[i].Cells[3].Value.ToString(); // (LDA, ADD, etc) or (RESW, RESB, etc) 
+                    var op = gridSourceCode.Rows[i].Cells[4].Value; // 00H, ZERO, 25
 
-                                int intValue = int.Parse(tabsim[gridSourceCode.Rows[i].Cells[4].Value.ToString()],
-                                    System.Globalization.NumberStyles.HexNumber);
+                    if (InstructionSet.Data.ContainsKey(instruction))
+                    {   //es una instruccion
+                        objectCode = String.Format("{0:x2}", InstructionSet.Data[instruction]);
+
+                        if (op != null)
+                        {
+                            if (tabsim.Keys.Contains(op.ToString()))
+                            {   // Direccion en tabsim
+                                int intValue = int.Parse(tabsim[op.ToString()], NumberStyles.HexNumber);
                                 //AQUI SUMAR a intValue si es X = 0 o 1 ---
                                 objectCode += intValue.ToString("X");
                             }
@@ -299,13 +301,49 @@ namespace IDE_for_SIC_ASM
                             if (gridSourceCode.Rows[i].Cells[3].Value.ToString() == "RSUB")
                                 objectCode += "0000";
                         }
-                        gridSourceCode.Rows[i].Cells[5].Value = objectCode;
                     }
                     else
                     {   //es una directiva
+                        int intValue = 0;
+                        var opStr = op == null? "" : op.ToString();
 
+                        switch (instruction)
+                        {
+                            case "WORD":
+                                if (opStr.Last() == 'H' || opStr.Last() == 'h')
+                                {
+                                    opStr = opStr.Remove(opStr.Length - 1);
+                                    intValue = int.Parse(opStr, NumberStyles.HexNumber);
+                                    objectCode = intValue.ToString("000000");
+                                } else
+                                {
+                                    intValue = int.Parse(opStr);
+                                    objectCode = string.Format("{0:x6}", intValue);
+                                }
+                                break;
+                            case "BYTE":
+                                if(opStr.Contains("C"))
+                                {
+                                    opStr = opStr.Substring(2, opStr.Length - 3); // Remove C and '
+
+                                    objectCode = "";
+                                    foreach(var c in opStr)
+                                    {
+                                        int value = Convert.ToInt32(c);
+                                        // Convert the decimal value to a hexadecimal value in string form.
+                                        objectCode += String.Format("{0:X}", value);
+                                    }
+                                } else
+                                {
+                                    objectCode = opStr.Substring(2, opStr.Length - 3); // Remove X and '
+
+                                    objectCode += objectCode.Length % 2 == 1 ? "0" : "";
+                                }
+                                break;
+                        }
                     }
                 }
+                gridSourceCode.Rows[i].Cells[5].Value = objectCode;
             }
         }
     }

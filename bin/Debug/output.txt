@@ -1,7 +1,1 @@
-Linea 3 con error: no viable alternative at input '    LDfrA'
 Linea 10 con error: mismatched input 'X' expecting BYTEOP
-Linea 16 con error: no viable alternative at input 'EOF '
-Linea 17 con error: no viable alternative at input 'EOF '
-Linea 22 con error: mismatched input 'X' expecting BYTEOP
-Linea 23 con error: mismatched input 'ASD' expecting BYTEOP
-Linea 48 con error: no viable alternative at input 'FOO '
