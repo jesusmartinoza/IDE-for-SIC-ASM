@@ -50,3 +50,16 @@ C:\Users\hongo\Documents\Programacion de sistemas\IDE for SIC ASM\IDE for SIC AS
 C:\Users\hongo\Documents\Programacion de sistemas\IDE for SIC ASM\IDE for SIC ASM\obj\Debug\IDE for SIC ASM.exe
 C:\Users\hongo\Documents\Programacion de sistemas\IDE for SIC ASM\IDE for SIC ASM\obj\Debug\IDE for SIC ASM.pdb
 C:\Users\hongo\Documents\Programacion de sistemas\IDE for SIC ASM\IDE for SIC ASM\obj\Debug\IDE for SIC ASM.csprojResolveAssemblyReference.cache
+C:\Users\jr_5o\IDE-for-SIC-ASM\bin\Debug\IDE for SIC ASM.exe.config
+C:\Users\jr_5o\IDE-for-SIC-ASM\bin\Debug\IDE for SIC ASM.exe
+C:\Users\jr_5o\IDE-for-SIC-ASM\bin\Debug\IDE for SIC ASM.pdb
+C:\Users\jr_5o\IDE-for-SIC-ASM\bin\Debug\FastColoredTextBox.dll
+C:\Users\jr_5o\IDE-for-SIC-ASM\bin\Debug\Antlr4.Runtime.Standard.xml
+C:\Users\jr_5o\IDE-for-SIC-ASM\bin\Debug\FastColoredTextBox.xml
+C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csprojResolveAssemblyReference.cache
+C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE_for_SIC_ASM.MainForm.resources
+C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE_for_SIC_ASM.Properties.Resources.resources
+C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.GenerateResource.Cache
+C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.CoreCompileInputs.cache
+C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.exe
+C:\Users\jr_5o\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.pdb

@@ -18,6 +18,7 @@ namespace IDE_for_SIC_ASM
 {
     public partial class MainForm : MaterialForm
     {
+        public Dictionary<string, string> tabsim;
         struct ParseResult
         {
             public SicGrammarParser parser;
@@ -197,10 +198,14 @@ namespace IDE_for_SIC_ASM
             result = parseLine(lines.Last(), lines.Count, "end");
             fillRow(lines.Count, PCs.Last(), result);
 
+            
+
             if (tbErrors.Text == "")
                 MessageBox.Show("Your grammar rules! ");
             else
                 File.WriteAllText("output.txt", tbErrors.Text);
+
+            tabsim = GenerateTabsim();
         }
 
         private void OpenFile_Click(object sender, EventArgs e)
@@ -230,6 +235,25 @@ namespace IDE_for_SIC_ASM
                 CurrentFileName.Text = saveDialog.FileName;
             }
             File.WriteAllText(CurrentFileName.Text, TextBoxEditor.Text);
+        }
+
+        private Dictionary<string,string> GenerateTabsim()
+        {
+            DataGridViewColumn current = gridSourceCode.Columns[2];
+            int count = gridSourceCode.RowCount;
+            Dictionary<string, string> DiccOut = new Dictionary<string, string>();
+            for (int i = 0; i < count; i++)
+            {
+                if(gridSourceCode.Rows[i].Cells[2].Value != null)
+                {
+                    if (!DiccOut.Keys.Contains(gridSourceCode.Rows[i].Cells[2].Value.ToString()))
+                    {
+                        DiccOut.Add(gridSourceCode.Rows[i].Cells[2].Value.ToString(),
+                            gridSourceCode.Rows[i].Cells[1].Value.ToString());
+                    }
+                }
+            }
+            return DiccOut;
         }
 
     }
