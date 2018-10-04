@@ -163,6 +163,7 @@ namespace IDE_for_SIC_ASM
             tbErrors.Text = "";
             gridSourceCode.Rows.Clear();
             tabsimGrid.Rows.Clear();
+            ObjFileTextBox.Text = "";
 
             // Parse first line
             var result = parseLine(lines[0], 0, "start");
@@ -201,13 +202,19 @@ namespace IDE_for_SIC_ASM
             tabsim = GenerateTabsim();
             long size = PCs.Last() - PCs.First();
             progSize.Text = size.ToString("X");
+
+            //Step 2
             GenerateObj();
+            GenerateObjFile();
+            
 
             if (tbErrors.Text == "")
                 MessageBox.Show("Your grammar rules! ");
             else
                 File.WriteAllText("output.txt", tbErrors.Text);
         }
+
+
 
         private void OpenFile_Click(object sender, EventArgs e)
         {
@@ -240,7 +247,7 @@ namespace IDE_for_SIC_ASM
         
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            materialTabSelector1.Width = Convert.ToInt32(this.Width * 1.1);
+            materialTabControl1.Width = Convert.ToInt32(this.Width * 1.1);
         }
 
         private Dictionary<string,string> GenerateTabsim()
@@ -294,7 +301,6 @@ namespace IDE_for_SIC_ASM
                             {   //no encontrado -> 7fff
                                 objectCode += "7FFF";
                             }
-                            
                         }
                         else
                         {
@@ -345,6 +351,73 @@ namespace IDE_for_SIC_ASM
                 }
                 gridSourceCode.Rows[i].Cells[5].Value = objectCode;
             }
+        }
+
+        private void GenerateObjFile()
+        {
+            string firstInstSaved = "";
+            //H section
+            ObjFileTextBox.Text += "H00" + gridSourceCode.Rows[0].Cells[1].Value.ToString();
+            for (int i = 0; i < 6 - progSize.Text.Count(); i++)
+                ObjFileTextBox.Text += "0";
+            ObjFileTextBox.Text += progSize.Text.Count() + "\n";
+
+            //T section
+            bool newT = true;
+            bool FInst = true;
+            for (int i = 1; i < gridSourceCode.RowCount-2; i++)
+            {
+                if(gridSourceCode.Rows[i].Cells[3].Value != null &&
+                    gridSourceCode.Rows[i].Cells[1].Value.ToString() != 
+                    gridSourceCode.Rows[i+1].Cells[1].Value.ToString())
+                {
+                    if (gridSourceCode.Rows[i].Cells[3].Value.ToString() != "RESW" &&
+                        gridSourceCode.Rows[i].Cells[3].Value.ToString() != "RESB")
+                    {
+                        
+                        if(FInst)
+                        {   //save the first Instr. adrs 
+                            firstInstSaved = gridSourceCode.Rows
+                                [i].Cells[1].Value.ToString();
+                            FInst = false;
+                        }
+                        if (newT)
+                        {
+                            ObjFileTextBox.Text += "T00" + gridSourceCode.Rows
+                                [i].Cells[1].Value.ToString();
+                            newT = false;
+                        }
+                        ObjFileTextBox.Text += gridSourceCode.Rows
+                            [i].Cells[5].Value.ToString();
+                    }
+                    else
+                    {
+                        if(ObjFileTextBox.Text.Last() != '\n')
+                            ObjFileTextBox.Text += "\n";
+                        newT = true;
+                    }
+                }
+            }
+
+            //E section
+            ObjFileTextBox.Text += "E00";
+            if (gridSourceCode.Rows[gridSourceCode.RowCount - 2].Cells[4].Value == null)
+                ObjFileTextBox.Text += firstInstSaved;
+            else
+            {
+                if (InstructionSet.Data.ContainsKey(gridSourceCode.Rows
+                    [gridSourceCode.RowCount - 2].Cells[4].Value.ToString()))
+                {
+                    ObjFileTextBox.Text += InstructionSet.Data[gridSourceCode.Rows
+                        [gridSourceCode.RowCount - 2].Cells[4].Value.ToString()];
+                }
+                else
+                {
+                    ObjFileTextBox.Text += "FFFF";
+                }
+            }
+            string name = System.IO.Path.GetFileNameWithoutExtension(CurrentFileName.Text);
+            File.WriteAllText(name + ".ob", ObjFileTextBox.Text);
         }
     }
 }

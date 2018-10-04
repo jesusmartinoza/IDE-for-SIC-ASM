@@ -1,1 +1,0 @@
-Linea 10 con error: mismatched input 'X' expecting BYTEOP

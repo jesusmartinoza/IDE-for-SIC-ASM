@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRunASM = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -44,6 +44,14 @@
             this.CurrentFileName = new MaterialSkin.Controls.MaterialLabel();
             this.TextBoxEditor = new FastColoredTextBoxNS.FastColoredTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ObjFileTextBox = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.progSize = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabsimGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridSourceCode = new System.Windows.Forms.DataGridView();
             this.Line = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,19 +59,14 @@
             this.INSTRUCTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ADDRESS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OBJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabsimGrid = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.progSize = new System.Windows.Forms.Label();
             this.materialTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRunASM
@@ -79,16 +82,16 @@
             this.btnRunASM.UseVisualStyleBackColor = true;
             this.btnRunASM.Click += new System.EventHandler(this.Run_Click);
             // 
-            // materialTabSelector1
+            // materialTabControl1
             // 
-            this.materialTabSelector1.BaseTabControl = this.materialTabControl;
-            this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Location = new System.Drawing.Point(-2, 62);
-            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(834, 40);
-            this.materialTabSelector1.TabIndex = 4;
-            this.materialTabSelector1.Text = "materialTabSelector1";
+            this.materialTabControl1.BaseTabControl = this.materialTabControl;
+            this.materialTabControl1.Depth = 0;
+            this.materialTabControl1.Location = new System.Drawing.Point(-2, 62);
+            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabControl1.Name = "materialTabControl1";
+            this.materialTabControl1.Size = new System.Drawing.Size(834, 40);
+            this.materialTabControl1.TabIndex = 4;
+            this.materialTabControl1.Text = "materialTabSelector1";
             // 
             // materialTabControl
             // 
@@ -211,6 +214,7 @@
             this.TextBoxEditor.CharWidth = 8;
             this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
             this.TextBoxEditor.IsReplaceMode = false;
             this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
@@ -225,6 +229,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.ObjFileTextBox);
+            this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.progSize);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.tabsimGrid);
@@ -237,9 +244,97 @@
             this.tabPage2.Text = "SIC output";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(659, 57);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Obj file:";
+            // 
+            // ObjFileTextBox
+            // 
+            this.ObjFileTextBox.BackColor = System.Drawing.Color.DimGray;
+            this.ObjFileTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ObjFileTextBox.Location = new System.Drawing.Point(654, 80);
+            this.ObjFileTextBox.Name = "ObjFileTextBox";
+            this.ObjFileTextBox.Size = new System.Drawing.Size(163, 321);
+            this.ObjFileTextBox.TabIndex = 5;
+            this.ObjFileTextBox.Text = "";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(521, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Tabsim:";
+            // 
+            // progSize
+            // 
+            this.progSize.AutoSize = true;
+            this.progSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.progSize.ForeColor = System.Drawing.SystemColors.Control;
+            this.progSize.Location = new System.Drawing.Point(660, 20);
+            this.progSize.Name = "progSize";
+            this.progSize.Size = new System.Drawing.Size(20, 17);
+            this.progSize.TabIndex = 3;
+            this.progSize.Text = "...";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(659, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Program Size:";
+            // 
+            // tabsimGrid
+            // 
+            this.tabsimGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.tabsimGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tabsimGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tabsimGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.tabsimGrid.Location = new System.Drawing.Point(516, 21);
+            this.tabsimGrid.Name = "tabsimGrid";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.tabsimGrid.RowHeadersVisible = false;
+            this.tabsimGrid.Size = new System.Drawing.Size(123, 380);
+            this.tabsimGrid.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Symbol";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Adrs";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 60;
+            // 
             // gridSourceCode
             // 
-            this.gridSourceCode.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.gridSourceCode.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.gridSourceCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridSourceCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridSourceCode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -249,18 +344,18 @@
             this.INSTRUCTION,
             this.ADDRESS,
             this.OBJ});
-            this.gridSourceCode.Location = new System.Drawing.Point(10, 12);
+            this.gridSourceCode.Location = new System.Drawing.Point(10, 21);
             this.gridSourceCode.Name = "gridSourceCode";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridSourceCode.RowHeadersVisible = false;
-            this.gridSourceCode.Size = new System.Drawing.Size(485, 389);
+            this.gridSourceCode.Size = new System.Drawing.Size(485, 380);
             this.gridSourceCode.TabIndex = 0;
             // 
             // Line
@@ -295,62 +390,6 @@
             this.OBJ.HeaderText = "OBJ";
             this.OBJ.Name = "OBJ";
             // 
-            // tabsimGrid
-            // 
-            this.tabsimGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.tabsimGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tabsimGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tabsimGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.tabsimGrid.Location = new System.Drawing.Point(522, 12);
-            this.tabsimGrid.Name = "tabsimGrid";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.tabsimGrid.RowHeadersVisible = false;
-            this.tabsimGrid.Size = new System.Drawing.Size(123, 216);
-            this.tabsimGrid.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Symbol";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Adrs";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 60;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(701, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Program Size:";
-            // 
-            // progSize
-            // 
-            this.progSize.AutoSize = true;
-            this.progSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.progSize.ForeColor = System.Drawing.SystemColors.Control;
-            this.progSize.Location = new System.Drawing.Point(702, 32);
-            this.progSize.Name = "progSize";
-            this.progSize.Size = new System.Drawing.Size(20, 17);
-            this.progSize.TabIndex = 3;
-            this.progSize.Text = "...";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,7 +398,7 @@
             this.ClientSize = new System.Drawing.Size(831, 547);
             this.Controls.Add(this.materialTabControl);
             this.Controls.Add(this.btnRunASM);
-            this.Controls.Add(this.materialTabSelector1);
+            this.Controls.Add(this.materialTabControl1);
             this.Name = "MainForm";
             this.Text = "IDE for SIC STANDARD";
             this.Resize += new System.EventHandler(this.MainForm_Resize);
@@ -372,15 +411,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private MaterialSkin.Controls.MaterialRaisedButton btnRunASM;
-        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
+        private MaterialSkin.Controls.MaterialTabSelector materialTabControl1;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private FastColoredTextBoxNS.FastColoredTextBox TextBoxEditor;
@@ -403,6 +442,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Label progSize;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RichTextBox ObjFileTextBox;
+        private System.Windows.Forms.Label label3;
     }
 }
 
