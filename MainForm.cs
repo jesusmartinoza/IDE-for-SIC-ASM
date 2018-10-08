@@ -357,7 +357,13 @@ namespace IDE_for_SIC_ASM
         {
             string firstInstSaved = "";
             //H section
-            ObjFileTextBox.Text += "H00" + gridSourceCode.Rows[0].Cells[1].Value.ToString();
+            string Progname = gridSourceCode.Rows[0].Cells[2].Value.ToString();
+            if(Progname.Length > 6)
+                Progname = Progname.Substring(0, 6);
+            else
+                for (int i = 0; i < 6 - Progname.Length; i++)
+                    Progname += " ";
+            ObjFileTextBox.Text += "H"+ Progname + "00" + gridSourceCode.Rows[0].Cells[1].Value.ToString();
             for (int i = 0; i < 6 - progSize.Text.Count(); i++)
                 ObjFileTextBox.Text += "0";
             ObjFileTextBox.Text += progSize.Text.Count() + "\n";
@@ -365,17 +371,19 @@ namespace IDE_for_SIC_ASM
             //T section
             bool newT = true;
             bool FInst = true;
+            string TRegisterData = "";
+            int TCounter = 0;
             for (int i = 1; i < gridSourceCode.RowCount-2; i++)
             {
                 if(gridSourceCode.Rows[i].Cells[3].Value != null &&
                     gridSourceCode.Rows[i].Cells[1].Value.ToString() != 
                     gridSourceCode.Rows[i+1].Cells[1].Value.ToString())
                 {
-                    if (gridSourceCode.Rows[i].Cells[3].Value.ToString() != "RESW" &&
-                        gridSourceCode.Rows[i].Cells[3].Value.ToString() != "RESB")
+                    string Instruction = gridSourceCode.Rows[i].Cells[3].Value.ToString();
+                    if ((Instruction != "RESW" && Instruction != "RESB" && TCounter < 30))
                     {
                         
-                        if(FInst)
+                        if(FInst && Instruction != "BYTE" && Instruction != "WORD")
                         {   //save the first Instr. adrs 
                             firstInstSaved = gridSourceCode.Rows
                                 [i].Cells[1].Value.ToString();
@@ -387,16 +395,42 @@ namespace IDE_for_SIC_ASM
                                 [i].Cells[1].Value.ToString();
                             newT = false;
                         }
-                        ObjFileTextBox.Text += gridSourceCode.Rows
+                        TRegisterData += gridSourceCode.Rows
                             [i].Cells[5].Value.ToString();
+                        TCounter += gridSourceCode.Rows[i].Cells[5].Value.ToString().Length / 2;
                     }
                     else
                     {
-                        if(ObjFileTextBox.Text.Last() != '\n')
+                        if (TCounter > 0)
+                        {
+                            if (String.Format("{0:X}", TCounter).Length == 1)
+                                ObjFileTextBox.Text += "0" + String.Format("{0:X}", TCounter);
+                            else
+                                ObjFileTextBox.Text += String.Format("{0:X}", TCounter);
+                        }
+                        TCounter = 0;
+                        ObjFileTextBox.Text += TRegisterData;
+                        TRegisterData = "";
+                        if (ObjFileTextBox.Text.Last() != '\n')
                             ObjFileTextBox.Text += "\n";
                         newT = true;
                     }
                 }
+            }
+            if(TRegisterData != "")
+            {
+                if (TCounter > 0)
+                {
+                    if (String.Format("{0:X}", TCounter).Length == 1)
+                        ObjFileTextBox.Text += "0" + String.Format("{0:X}", TCounter);
+                    else
+                        ObjFileTextBox.Text += String.Format("{0:X}", TCounter);
+                }
+                TCounter = 0;
+                ObjFileTextBox.Text += TRegisterData;
+                TRegisterData = "";
+                if (ObjFileTextBox.Text.Last() != '\n')
+                    ObjFileTextBox.Text += "\n";
             }
 
             //E section

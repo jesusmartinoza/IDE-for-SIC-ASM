@@ -44,7 +44,6 @@
             this.CurrentFileName = new MaterialSkin.Controls.MaterialLabel();
             this.TextBoxEditor = new FastColoredTextBoxNS.FastColoredTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
             this.ObjFileTextBox = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.progSize = new System.Windows.Forms.Label();
@@ -214,7 +213,6 @@
             this.TextBoxEditor.CharWidth = 8;
             this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
             this.TextBoxEditor.IsReplaceMode = false;
             this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
@@ -229,7 +227,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.ObjFileTextBox);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.progSize);
@@ -244,24 +241,13 @@
             this.tabPage2.Text = "SIC output";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(659, 57);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Obj file:";
-            // 
             // ObjFileTextBox
             // 
             this.ObjFileTextBox.BackColor = System.Drawing.Color.DimGray;
             this.ObjFileTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ObjFileTextBox.Location = new System.Drawing.Point(654, 80);
+            this.ObjFileTextBox.Location = new System.Drawing.Point(6, 294);
             this.ObjFileTextBox.Name = "ObjFileTextBox";
-            this.ObjFileTextBox.Size = new System.Drawing.Size(163, 321);
+            this.ObjFileTextBox.Size = new System.Drawing.Size(811, 109);
             this.ObjFileTextBox.TabIndex = 5;
             this.ObjFileTextBox.Text = "";
             // 
@@ -270,7 +256,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(521, 0);
+            this.label2.Location = new System.Drawing.Point(615, 1);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 20);
             this.label2.TabIndex = 4;
@@ -281,7 +267,7 @@
             this.progSize.AutoSize = true;
             this.progSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.progSize.ForeColor = System.Drawing.SystemColors.Control;
-            this.progSize.Location = new System.Drawing.Point(660, 20);
+            this.progSize.Location = new System.Drawing.Point(197, 3);
             this.progSize.Name = "progSize";
             this.progSize.Size = new System.Drawing.Size(20, 17);
             this.progSize.TabIndex = 3;
@@ -292,7 +278,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(659, 0);
+            this.label1.Location = new System.Drawing.Point(65, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 20);
             this.label1.TabIndex = 2;
@@ -306,7 +292,7 @@
             this.tabsimGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.tabsimGrid.Location = new System.Drawing.Point(516, 21);
+            this.tabsimGrid.Location = new System.Drawing.Point(608, 21);
             this.tabsimGrid.Name = "tabsimGrid";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
@@ -317,7 +303,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tabsimGrid.RowHeadersVisible = false;
-            this.tabsimGrid.Size = new System.Drawing.Size(123, 380);
+            this.tabsimGrid.Size = new System.Drawing.Size(123, 267);
             this.tabsimGrid.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -344,7 +330,7 @@
             this.INSTRUCTION,
             this.ADDRESS,
             this.OBJ});
-            this.gridSourceCode.Location = new System.Drawing.Point(10, 21);
+            this.gridSourceCode.Location = new System.Drawing.Point(42, 21);
             this.gridSourceCode.Name = "gridSourceCode";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
@@ -355,7 +341,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridSourceCode.RowHeadersVisible = false;
-            this.gridSourceCode.Size = new System.Drawing.Size(485, 380);
+            this.gridSourceCode.Size = new System.Drawing.Size(485, 267);
             this.gridSourceCode.TabIndex = 0;
             // 
             // Line
@@ -444,7 +430,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox ObjFileTextBox;
-        private System.Windows.Forms.Label label3;
     }
 }
 
