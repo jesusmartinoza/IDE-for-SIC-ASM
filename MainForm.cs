@@ -32,6 +32,7 @@ namespace IDE_for_SIC_ASM
             public String symbol; // Identificador de la instruccion (Opcional)
             public String instruction; //  Mas especifico que instruccion o directiva es, ADD, RSUB, RESB, etc.
             public String op; // Operador de la instruccion. Es una etiqueta (Opcional)
+            public Boolean index; // Indica si el operador es indexado
             public String obj;
         }
 
@@ -49,6 +50,23 @@ namespace IDE_for_SIC_ASM
             TextBoxEditor.CaretColor = Color.FromArgb(169, 183, 197);
             //BackColor = Color.FromArgb(66, 66, 80);
             PCs = new List<long>();
+
+            Dictionary<String, String> registers = new Dictionary<string, string>();
+            registers.Add("CP", "FFF");
+            registers.Add("A", "FFF");
+            registers.Add("X", "FFF");
+            registers.Add("L", "FFF");
+            registers.Add("SW", "FFF");
+            registers.Add("CC", "FFF");
+
+            foreach (var r in registers)
+            {
+                String[] data = new String[]
+                {
+                    r.Key, r.Value
+                };
+                gridRegisters.Rows.Add(data);
+            }
         }
 
         private void FillRow(int line, long PC, ParseResult result)
@@ -150,6 +168,10 @@ namespace IDE_for_SIC_ASM
                         else
                             result.symbol = t.Text;
                         break;
+                    case "INDEX":
+                        result.index = true;
+                        result.op += ", X";
+                        break;
                 }
             }
 
@@ -210,7 +232,6 @@ namespace IDE_for_SIC_ASM
             GenerateObj();
             GenerateObjFile();
             
-
             if (tbErrors.Text == "")
                 MessageBox.Show("Your grammar rules! ");
             else
@@ -297,7 +318,9 @@ namespace IDE_for_SIC_ASM
                             if (tabsim.Keys.Contains(op.ToString()))
                             {   // Direccion en tabsim
                                 int intValue = int.Parse(tabsim[op.ToString()], NumberStyles.HexNumber);
-                                //AQUI SUMAR a intValue si es X = 0 o 1 ---
+
+                                if (instruction.Contains(", X"))
+                                    intValue += 32768;
                                 objectCode += intValue.ToString("X");
                             }
                             else
@@ -359,7 +382,7 @@ namespace IDE_for_SIC_ASM
         private void GenerateMapMemory()
         {
             gridMapMemory.Rows.Clear();
-            int j = 0;
+
             for(long i = PCs.First(); i <= PCs.Last(); i+=16)
             {
                 String[] data = new String[17];
@@ -367,10 +390,7 @@ namespace IDE_for_SIC_ASM
                 data[0] = i.ToString("X").Substring(0, i.ToString("X").Length -1 );
 
                 gridMapMemory.Rows.Add(data);
-                j++;
             }
-
-            Console.WriteLine(j);
         }
 
         private void GenerateObjFile()

@@ -14,9 +14,8 @@ programa: inicio (proposicion)+  fin;
 inicio: ID SEP 'START' SEP NUM FINL;
 fin: SEP 'END' (SEP ID)? FINL?;
 proposicion: (instruccion | directiva | RSUB) FINL;
-instruccion: ID? SEP INSTRUCCIONES SEP opinstruccion;
+instruccion: ID? SEP INSTRUCCIONES SEP ID INDEX?;
 directiva: ID? SEP ('BYTE' SEP BYTEOP | (TIPODIRECTIVA SEP NUM));
-opinstruccion: ID (',' ' '* 'X')?;
 RSUB: ((ID SEP) | SEP)? 'RSUB' SEP?;
 
 /*
@@ -33,5 +32,6 @@ FINL: '\n';
 NUMH: ('0'..'9' | ('A' .. 'F'))+;
 NUMHH : NUMH ('h' | 'H' );
 ID : ('a'..'z'|'A'..'Z')+;
+INDEX : (',' ' '* 'X');
 SEP:(' ' |'\t')+; 
 //END: 'END';

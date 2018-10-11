@@ -90,14 +90,4 @@ public interface ISicGrammarListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitDirectiva([NotNull] SicGrammarParser.DirectivaContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SicGrammarParser.opinstruccion"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOpinstruccion([NotNull] SicGrammarParser.OpinstruccionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SicGrammarParser.opinstruccion"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOpinstruccion([NotNull] SicGrammarParser.OpinstruccionContext context);
 }

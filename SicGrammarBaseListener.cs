@@ -106,18 +106,6 @@ public partial class SicGrammarBaseListener : ISicGrammarListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDirectiva([NotNull] SicGrammarParser.DirectivaContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SicGrammarParser.opinstruccion"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterOpinstruccion([NotNull] SicGrammarParser.OpinstruccionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SicGrammarParser.opinstruccion"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitOpinstruccion([NotNull] SicGrammarParser.OpinstruccionContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>
