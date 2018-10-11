@@ -19,17 +19,19 @@ namespace IDE_for_SIC_ASM
     public partial class MainForm : MaterialForm
     {
         public Dictionary<string, string> tabsim;
+        public List<long> PCs; // Program counters
+
         struct ParseResult
         {
-            public SicGrammarParser parser;
-            public IList<IToken> tokens;
-            public String type;
-            public uint num;
-            public bool success;
+            public SicGrammarParser parser; // Instancia del parser
+            public IList<IToken> tokens; // Lista de tokens de la linea
+            public String type; // Variable para indicar si es instruccion, directiva, START, END, etc.
+            public uint num; // Localidad de memoria (Opcional)
+            public bool success; // Bandera de exito
 
-            public String symbol;
-            public String instruction;
-            public String op;
+            public String symbol; // Identificador de la instruccion (Opcional)
+            public String instruction; //  Mas especifico que instruccion o directiva es, ADD, RSUB, RESB, etc.
+            public String op; // Operador de la instruccion. Es una etiqueta (Opcional)
             public String obj;
         }
 
@@ -46,9 +48,10 @@ namespace IDE_for_SIC_ASM
             TextBoxEditor.ForeColor = Color.FromArgb(169, 183, 197);
             TextBoxEditor.CaretColor = Color.FromArgb(169, 183, 197);
             //BackColor = Color.FromArgb(66, 66, 80);
+            PCs = new List<long>();
         }
 
-        private void fillRow(int line, long PC, ParseResult result)
+        private void FillRow(int line, long PC, ParseResult result)
         {
             String[] data =
             {
@@ -57,7 +60,7 @@ namespace IDE_for_SIC_ASM
             gridSourceCode.Rows.Add(data);
         }
 
-        private ParseResult parseLine(String line, int lineNumber, String type)
+        private ParseResult ParseLine(String line, int lineNumber, String type)
         {
             bool success = true;
             var result = new ParseResult();
@@ -155,8 +158,8 @@ namespace IDE_for_SIC_ASM
 
         private void Run_Click(object sender, EventArgs e)
         {
+            PCs.Clear();
             // Store program counters of every line
-            var PCs = new List<long>();
 
             string contents = File.ReadAllText(CurrentFileName.Text);
             List<String> lines = contents.Replace("\r", " ").Split('\n').ToList();
@@ -166,14 +169,14 @@ namespace IDE_for_SIC_ASM
             ObjFileTextBox.Text = "";
 
             // Parse first line
-            var result = parseLine(lines[0], 0, "start");
+            var result = ParseLine(lines[0], 0, "start");
             PCs.Add(result.num);
-            fillRow(1, PCs.First(), result);
+            FillRow(1, PCs.First(), result);
 
             // Parse ASM content
             for (int i = 1; i < lines.Count - 1; i++)
             {
-                result = parseLine(lines[i], i, "body");
+                result = ParseLine(lines[i], i, "body");
 
                 if(result.success)
                 {
@@ -188,16 +191,16 @@ namespace IDE_for_SIC_ASM
                         case "RESW": PCs.Add(PCs.Last() + result.num * 3); break;
                     }
 
-                    fillRow(i + 1, PCs[PCs.Count - 2], result);
+                    FillRow(i + 1, PCs[PCs.Count - 2], result);
                 } else
                 {
-                    fillRow(i + 1, PCs.Last(), result);
+                    FillRow(i + 1, PCs.Last(), result);
                 }
             }
 
             // Parse END line
-            result = parseLine(lines.Last(), lines.Count, "end");
-            fillRow(lines.Count, PCs.Last(), result);
+            result = ParseLine(lines.Last(), lines.Count, "end");
+            FillRow(lines.Count, PCs.Last(), result);
 
             tabsim = GenerateTabsim();
             long size = PCs.Last() - PCs.First();
@@ -212,9 +215,9 @@ namespace IDE_for_SIC_ASM
                 MessageBox.Show("Your grammar rules! ");
             else
                 File.WriteAllText("output.txt", tbErrors.Text);
+
+            GenerateMapMemory();
         }
-
-
 
         private void OpenFile_Click(object sender, EventArgs e)
         {
@@ -353,10 +356,27 @@ namespace IDE_for_SIC_ASM
             }
         }
 
+        private void GenerateMapMemory()
+        {
+            gridMapMemory.Rows.Clear();
+            int j = 0;
+            for(long i = PCs.First(); i <= PCs.Last(); i+=16)
+            {
+                String[] data = new String[17];
+                data = data.Select(d => "FF").ToArray();
+                data[0] = i.ToString("X").Substring(0, i.ToString("X").Length -1 );
+
+                gridMapMemory.Rows.Add(data);
+                j++;
+            }
+
+            Console.WriteLine(j);
+        }
+
         private void GenerateObjFile()
         {
             string firstInstSaved = "";
-            //H section
+            // H section
             string Progname = gridSourceCode.Rows[0].Cells[2].Value.ToString();
             if(Progname.Length > 6)
                 Progname = Progname.Substring(0, 6);

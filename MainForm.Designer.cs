@@ -45,7 +45,6 @@
             this.TextBoxEditor = new FastColoredTextBoxNS.FastColoredTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ObjFileTextBox = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.progSize = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabsimGrid = new System.Windows.Forms.DataGridView();
@@ -58,6 +57,25 @@
             this.INSTRUCTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ADDRESS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OBJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.gridMapMemory = new System.Windows.Forms.DataGridView();
+            this.addr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colum0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -66,6 +84,8 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRunASM
@@ -96,6 +116,7 @@
             // 
             this.materialTabControl.Controls.Add(this.tabPage1);
             this.materialTabControl.Controls.Add(this.tabPage2);
+            this.materialTabControl.Controls.Add(this.tabPage3);
             this.materialTabControl.Depth = 0;
             this.materialTabControl.Location = new System.Drawing.Point(-2, 108);
             this.materialTabControl.MouseState = MaterialSkin.MouseState.HOVER;
@@ -228,7 +249,6 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ObjFileTextBox);
-            this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.progSize);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.tabsimGrid);
@@ -251,23 +271,12 @@
             this.ObjFileTextBox.TabIndex = 5;
             this.ObjFileTextBox.Text = "";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(615, 1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Tabsim:";
-            // 
             // progSize
             // 
             this.progSize.AutoSize = true;
             this.progSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.progSize.ForeColor = System.Drawing.SystemColors.Control;
-            this.progSize.Location = new System.Drawing.Point(197, 3);
+            this.progSize.Location = new System.Drawing.Point(771, 25);
             this.progSize.Name = "progSize";
             this.progSize.Size = new System.Drawing.Size(20, 17);
             this.progSize.TabIndex = 3;
@@ -278,7 +287,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(65, 0);
+            this.label1.Location = new System.Drawing.Point(649, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 20);
             this.label1.TabIndex = 2;
@@ -292,7 +301,7 @@
             this.tabsimGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.tabsimGrid.Location = new System.Drawing.Point(608, 21);
+            this.tabsimGrid.Location = new System.Drawing.Point(520, 22);
             this.tabsimGrid.Name = "tabsimGrid";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
@@ -330,7 +339,7 @@
             this.INSTRUCTION,
             this.ADDRESS,
             this.OBJ});
-            this.gridSourceCode.Location = new System.Drawing.Point(42, 21);
+            this.gridSourceCode.Location = new System.Drawing.Point(6, 21);
             this.gridSourceCode.Name = "gridSourceCode";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
@@ -341,7 +350,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridSourceCode.RowHeadersVisible = false;
-            this.gridSourceCode.Size = new System.Drawing.Size(485, 267);
+            this.gridSourceCode.Size = new System.Drawing.Size(506, 267);
             this.gridSourceCode.TabIndex = 0;
             // 
             // Line
@@ -376,6 +385,145 @@
             this.OBJ.HeaderText = "OBJ";
             this.OBJ.Name = "OBJ";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.gridMapMemory);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(826, 407);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Map Memory";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // gridMapMemory
+            // 
+            this.gridMapMemory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridMapMemory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.addr,
+            this.Colum0,
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8,
+            this.Column9,
+            this.Column10,
+            this.Column11,
+            this.Column12,
+            this.Column13,
+            this.Column14,
+            this.Column15});
+            this.gridMapMemory.Location = new System.Drawing.Point(10, 12);
+            this.gridMapMemory.Name = "gridMapMemory";
+            this.gridMapMemory.RowHeadersVisible = false;
+            this.gridMapMemory.Size = new System.Drawing.Size(765, 380);
+            this.gridMapMemory.TabIndex = 0;
+            // 
+            // addr
+            // 
+            this.addr.HeaderText = "";
+            this.addr.MinimumWidth = 100;
+            this.addr.Name = "addr";
+            // 
+            // Colum0
+            // 
+            this.Colum0.HeaderText = "0";
+            this.Colum0.Name = "Colum0";
+            this.Colum0.Width = 40;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "1";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 40;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "2";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 40;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "3";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 40;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "4";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 40;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "5";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 40;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "6";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 40;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "7";
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 40;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "8";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 40;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "9";
+            this.Column9.Name = "Column9";
+            this.Column9.Width = 40;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "A";
+            this.Column10.Name = "Column10";
+            this.Column10.Width = 40;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "B";
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 40;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "C";
+            this.Column12.Name = "Column12";
+            this.Column12.Width = 40;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "D";
+            this.Column13.Name = "Column13";
+            this.Column13.Width = 40;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "E";
+            this.Column14.Name = "Column14";
+            this.Column14.Width = 40;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "F";
+            this.Column15.Name = "Column15";
+            this.Column15.Width = 40;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,6 +547,8 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -428,8 +578,26 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Label progSize;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox ObjFileTextBox;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView gridMapMemory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Colum0;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
     }
 }
 
