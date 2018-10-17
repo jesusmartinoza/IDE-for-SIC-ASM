@@ -387,7 +387,9 @@ namespace IDE_for_SIC_ASM
             {
                 String[] data = new String[17];
                 data = data.Select(d => "FF").ToArray();
-                data[0] = i.ToString("X").Substring(0, i.ToString("XXXXX").Length -1 );
+                data[0] = i.ToString("X")
+                    .Substring(0, i.ToString("X").Length -1 ) // Remove last char
+                    .PadLeft(5, '0');
 
                 gridMapMemory.Rows.Add(data);
             }
@@ -503,16 +505,21 @@ namespace IDE_for_SIC_ASM
                 string addrs = strOutput[i].Substring(1, 6); //get current full address
                 int len = int.Parse(strOutput[i].Substring(7, 2), NumberStyles.HexNumber); //get lenght 
                 string strData = strOutput[i].Substring(9, strOutput[i].Count()-9);
+
                 for (int j = 0; j < len; j++)
                 {
                     string row = addrs.Substring(0, 5); //get current addrs row
                     string column = addrs.Substring(5, 1); //get current addrs column
 
-                    DataGridViewRow selectedRow = gridMapMemory.Rows.Where(Cells[0].value == row).first();
+                    // Get DataGridView row that matches the current row value
+                    DataGridViewRow selectedRow = gridMapMemory.Rows
+                                            .Cast<DataGridViewRow>()
+                                            .Where(r => r.Cells[0].Value.ToString().Equals(row))
+                                            .First();
 
                     int intColumValue = int.Parse(column, NumberStyles.HexNumber);
                     selectedRow.Cells[intColumValue + 1].Value = strData.Substring(j * 2, 2);
-                    addrs = (int.Parse(column, NumberStyles.HexNumber) + 1).ToString("X"); //update addrs+1h
+                    addrs = (int.Parse(addrs, NumberStyles.HexNumber) + 1).ToString("X").PadLeft(6, '0'); //update addrs+1h
                 }
             }
 

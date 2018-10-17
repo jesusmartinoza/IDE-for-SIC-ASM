@@ -239,6 +239,7 @@
             this.TextBoxEditor.CharWidth = 8;
             this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
             this.TextBoxEditor.IsReplaceMode = false;
             this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
@@ -266,12 +267,12 @@
             this.tabPage2.Text = "SIC output";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // ObjFileTextBox
+            // objFileTextBox
             // 
             this.objFileTextBox.BackColor = System.Drawing.Color.DimGray;
             this.objFileTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.objFileTextBox.Location = new System.Drawing.Point(6, 294);
-            this.objFileTextBox.Name = "ObjFileTextBox";
+            this.objFileTextBox.Name = "objFileTextBox";
             this.objFileTextBox.Size = new System.Drawing.Size(811, 109);
             this.objFileTextBox.TabIndex = 5;
             this.objFileTextBox.Text = "";
@@ -417,6 +418,7 @@
             // 
             // gridRegisters
             // 
+            this.gridRegisters.AllowUserToAddRows = false;
             this.gridRegisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridRegisters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Register,
@@ -440,6 +442,7 @@
             // 
             // gridMapMemory
             // 
+            this.gridMapMemory.AllowUserToAddRows = false;
             this.gridMapMemory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMapMemory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.addr,
