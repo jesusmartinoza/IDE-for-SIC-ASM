@@ -80,6 +80,7 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnOpenFrom = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -393,6 +394,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnOpenFrom);
             this.tabPage3.Controls.Add(this.btnOpenObj);
             this.tabPage3.Controls.Add(this.gridRegisters);
             this.tabPage3.Controls.Add(this.gridMapMemory);
@@ -412,7 +414,7 @@
             this.btnOpenObj.Primary = true;
             this.btnOpenObj.Size = new System.Drawing.Size(91, 32);
             this.btnOpenObj.TabIndex = 5;
-            this.btnOpenObj.Text = "Open OBJ";
+            this.btnOpenObj.Text = "Charge OBJ";
             this.btnOpenObj.UseVisualStyleBackColor = true;
             this.btnOpenObj.Click += new System.EventHandler(this.BtnOpenObj_Click);
             // 
@@ -571,6 +573,19 @@
             this.Column15.Name = "Column15";
             this.Column15.Width = 35;
             // 
+            // btnOpenFrom
+            // 
+            this.btnOpenFrom.Depth = 0;
+            this.btnOpenFrom.Location = new System.Drawing.Point(702, 294);
+            this.btnOpenFrom.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnOpenFrom.Name = "btnOpenFrom";
+            this.btnOpenFrom.Primary = true;
+            this.btnOpenFrom.Size = new System.Drawing.Size(91, 32);
+            this.btnOpenFrom.TabIndex = 6;
+            this.btnOpenFrom.Text = "Open From OBJ";
+            this.btnOpenFrom.UseVisualStyleBackColor = true;
+            this.btnOpenFrom.Click += new System.EventHandler(this.btnOpenFrom_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -650,6 +665,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenObj;
+        private MaterialSkin.Controls.MaterialRaisedButton btnOpenFrom;
     }
 }
 

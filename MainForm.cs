@@ -382,8 +382,15 @@ namespace IDE_for_SIC_ASM
         private void GenerateMapMemory()
         {
             gridMapMemory.Rows.Clear();
+            int startAddr = int.Parse(objFileTextBox.Text.Substring(7, 5),
+                NumberStyles.HexNumber);
 
-            for(long i = PCs.First(); i <= PCs.Last(); i+=16)
+            int length = int.Parse(objFileTextBox.Text.Substring(12, 6),
+                NumberStyles.HexNumber);
+
+            int endAddr = startAddr + length;
+
+            for (long i = startAddr; i <= endAddr; i+=16)
             {
                 String[] data = new String[17];
                 data = data.Select(d => "FF").ToArray();
@@ -408,7 +415,7 @@ namespace IDE_for_SIC_ASM
             objFileTextBox.Text += "H"+ programName + "00" + gridSourceCode.Rows[0].Cells[1].Value.ToString();
             for (int i = 0; i < 6 - progSize.Text.Count(); i++)
                 objFileTextBox.Text += "0";
-            objFileTextBox.Text += progSize.Text.Count() + "\n";
+            objFileTextBox.Text += progSize.Text + "\n";
 
             //T section
             bool newT = true;
@@ -519,10 +526,23 @@ namespace IDE_for_SIC_ASM
 
                     int intColumValue = int.Parse(column, NumberStyles.HexNumber);
                     selectedRow.Cells[intColumValue + 1].Value = strData.Substring(j * 2, 2);
+                    selectedRow.Cells[intColumValue + 1].Style.BackColor = Color.LightSteelBlue;
                     addrs = (int.Parse(addrs, NumberStyles.HexNumber) + 1).ToString("X").PadLeft(6, '0'); //update addrs+1h
                 }
             }
+        }
 
+        private void btnOpenFrom_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog OpenDialog = new OpenFileDialog{};
+
+            if (OpenDialog.ShowDialog() == DialogResult.OK)
+            {
+                CurrentFileName.Text = OpenDialog.FileName;
+                objFileTextBox.Text = File.ReadAllText(OpenDialog.FileName);
+                GenerateMapMemory();
+                //BtnOpenObj_Click(sender, e);
+            }
         }
     }
 }
