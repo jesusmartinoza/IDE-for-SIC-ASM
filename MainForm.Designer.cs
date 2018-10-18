@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRunASM = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
@@ -44,7 +44,7 @@
             this.CurrentFileName = new MaterialSkin.Controls.MaterialLabel();
             this.TextBoxEditor = new FastColoredTextBoxNS.FastColoredTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ObjFileTextBox = new System.Windows.Forms.RichTextBox();
+            this.objFileTextBox = new System.Windows.Forms.RichTextBox();
             this.progSize = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabsimGrid = new System.Windows.Forms.DataGridView();
@@ -58,8 +58,11 @@
             this.ADDRESS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OBJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.gridMapMemory = new System.Windows.Forms.DataGridView();
+            this.btnOpenObj = new MaterialSkin.Controls.MaterialRaisedButton();
             this.gridRegisters = new System.Windows.Forms.DataGridView();
+            this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gridMapMemory = new System.Windows.Forms.DataGridView();
             this.addr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Colum0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,8 +80,6 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -88,8 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegisters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRunASM
@@ -252,7 +253,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.ObjFileTextBox);
+            this.tabPage2.Controls.Add(this.objFileTextBox);
             this.tabPage2.Controls.Add(this.progSize);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.tabsimGrid);
@@ -267,13 +268,13 @@
             // 
             // ObjFileTextBox
             // 
-            this.ObjFileTextBox.BackColor = System.Drawing.Color.DimGray;
-            this.ObjFileTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ObjFileTextBox.Location = new System.Drawing.Point(6, 294);
-            this.ObjFileTextBox.Name = "ObjFileTextBox";
-            this.ObjFileTextBox.Size = new System.Drawing.Size(811, 109);
-            this.ObjFileTextBox.TabIndex = 5;
-            this.ObjFileTextBox.Text = "";
+            this.objFileTextBox.BackColor = System.Drawing.Color.DimGray;
+            this.objFileTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.objFileTextBox.Location = new System.Drawing.Point(6, 294);
+            this.objFileTextBox.Name = "ObjFileTextBox";
+            this.objFileTextBox.Size = new System.Drawing.Size(811, 109);
+            this.objFileTextBox.TabIndex = 5;
+            this.objFileTextBox.Text = "";
             // 
             // progSize
             // 
@@ -307,14 +308,14 @@
             this.dataGridViewTextBoxColumn2});
             this.tabsimGrid.Location = new System.Drawing.Point(520, 22);
             this.tabsimGrid.Name = "tabsimGrid";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tabsimGrid.RowHeadersVisible = false;
             this.tabsimGrid.Size = new System.Drawing.Size(123, 267);
             this.tabsimGrid.TabIndex = 1;
@@ -345,14 +346,14 @@
             this.OBJ});
             this.gridSourceCode.Location = new System.Drawing.Point(6, 21);
             this.gridSourceCode.Name = "gridSourceCode";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridSourceCode.RowHeadersVisible = false;
             this.gridSourceCode.Size = new System.Drawing.Size(506, 267);
             this.gridSourceCode.TabIndex = 0;
@@ -391,6 +392,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnOpenObj);
             this.tabPage3.Controls.Add(this.gridRegisters);
             this.tabPage3.Controls.Add(this.gridMapMemory);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -399,6 +401,42 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Map Memory";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnOpenObj
+            // 
+            this.btnOpenObj.Depth = 0;
+            this.btnOpenObj.Location = new System.Drawing.Point(702, 239);
+            this.btnOpenObj.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnOpenObj.Name = "btnOpenObj";
+            this.btnOpenObj.Primary = true;
+            this.btnOpenObj.Size = new System.Drawing.Size(91, 32);
+            this.btnOpenObj.TabIndex = 5;
+            this.btnOpenObj.Text = "Open OBJ";
+            this.btnOpenObj.UseVisualStyleBackColor = true;
+            this.btnOpenObj.Click += new System.EventHandler(this.BtnOpenObj_Click);
+            // 
+            // gridRegisters
+            // 
+            this.gridRegisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridRegisters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Register,
+            this.Value});
+            this.gridRegisters.Location = new System.Drawing.Point(674, 12);
+            this.gridRegisters.Name = "gridRegisters";
+            this.gridRegisters.RowHeadersVisible = false;
+            this.gridRegisters.Size = new System.Drawing.Size(143, 208);
+            this.gridRegisters.TabIndex = 1;
+            // 
+            // Register
+            // 
+            this.Register.HeaderText = "Reg";
+            this.Register.Name = "Register";
+            this.Register.Width = 35;
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
             // 
             // gridMapMemory
             // 
@@ -426,18 +464,6 @@
             this.gridMapMemory.RowHeadersVisible = false;
             this.gridMapMemory.Size = new System.Drawing.Size(644, 380);
             this.gridMapMemory.TabIndex = 0;
-            // 
-            // gridRegisters
-            // 
-            this.gridRegisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridRegisters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Register,
-            this.Value});
-            this.gridRegisters.Location = new System.Drawing.Point(674, 12);
-            this.gridRegisters.Name = "gridRegisters";
-            this.gridRegisters.RowHeadersVisible = false;
-            this.gridRegisters.Size = new System.Drawing.Size(143, 208);
-            this.gridRegisters.TabIndex = 1;
             // 
             // addr
             // 
@@ -542,17 +568,6 @@
             this.Column15.Name = "Column15";
             this.Column15.Width = 35;
             // 
-            // Register
-            // 
-            this.Register.HeaderText = "Reg";
-            this.Register.Name = "Register";
-            this.Register.Width = 35;
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -577,8 +592,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegisters)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -608,7 +623,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Label progSize;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox ObjFileTextBox;
+        private System.Windows.Forms.RichTextBox objFileTextBox;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView gridMapMemory;
         private System.Windows.Forms.DataGridView gridRegisters;
@@ -631,6 +646,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private MaterialSkin.Controls.MaterialRaisedButton btnOpenObj;
     }
 }
 

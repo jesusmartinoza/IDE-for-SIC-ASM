@@ -188,7 +188,7 @@ namespace IDE_for_SIC_ASM
             tbErrors.Text = "";
             gridSourceCode.Rows.Clear();
             tabsimGrid.Rows.Clear();
-            ObjFileTextBox.Text = "";
+            objFileTextBox.Text = "";
 
             // Parse first line
             var result = ParseLine(lines[0], 0, "start");
@@ -387,7 +387,7 @@ namespace IDE_for_SIC_ASM
             {
                 String[] data = new String[17];
                 data = data.Select(d => "FF").ToArray();
-                data[0] = i.ToString("X").Substring(0, i.ToString("X").Length -1 );
+                data[0] = i.ToString("X").Substring(0, i.ToString("XXXXX").Length -1 );
 
                 gridMapMemory.Rows.Add(data);
             }
@@ -397,101 +397,125 @@ namespace IDE_for_SIC_ASM
         {
             string firstInstSaved = "";
             // H section
-            string Progname = gridSourceCode.Rows[0].Cells[2].Value.ToString();
-            if(Progname.Length > 6)
-                Progname = Progname.Substring(0, 6);
+            string programName = gridSourceCode.Rows[0].Cells[2].Value.ToString();
+            if(programName.Length > 6)
+                programName = programName.Substring(0, 6);
             else
-                for (int i = 0; i < 6 - Progname.Length; i++)
-                    Progname += " ";
-            ObjFileTextBox.Text += "H"+ Progname + "00" + gridSourceCode.Rows[0].Cells[1].Value.ToString();
+                for (int i = 0; i < 6 - programName.Length; i++)
+                    programName += " ";
+            objFileTextBox.Text += "H"+ programName + "00" + gridSourceCode.Rows[0].Cells[1].Value.ToString();
             for (int i = 0; i < 6 - progSize.Text.Count(); i++)
-                ObjFileTextBox.Text += "0";
-            ObjFileTextBox.Text += progSize.Text.Count() + "\n";
+                objFileTextBox.Text += "0";
+            objFileTextBox.Text += progSize.Text.Count() + "\n";
 
             //T section
             bool newT = true;
-            bool FInst = true;
-            string TRegisterData = "";
-            int TCounter = 0;
+            bool firstInstruct = true;
+            string dataRegT = "";
+            int counterRegT = 0;
             for (int i = 1; i < gridSourceCode.RowCount-2; i++)
             {
                 if(gridSourceCode.Rows[i].Cells[3].Value != null &&
                     gridSourceCode.Rows[i].Cells[1].Value.ToString() != 
                     gridSourceCode.Rows[i+1].Cells[1].Value.ToString())
                 {
-                    string Instruction = gridSourceCode.Rows[i].Cells[3].Value.ToString();
-                    if ((Instruction != "RESW" && Instruction != "RESB" && TCounter < 30))
+                    string instruction = gridSourceCode.Rows[i].Cells[3].Value.ToString();
+                    if ((instruction != "RESW" && instruction != "RESB" && counterRegT < 30))
                     {
                         
-                        if(FInst && Instruction != "BYTE" && Instruction != "WORD")
+                        if(firstInstruct && instruction != "BYTE" && instruction != "WORD")
                         {   //save the first Instr. adrs 
                             firstInstSaved = gridSourceCode.Rows
                                 [i].Cells[1].Value.ToString();
-                            FInst = false;
+                            firstInstruct = false;
                         }
                         if (newT)
                         {
-                            ObjFileTextBox.Text += "T00" + gridSourceCode.Rows
+                            objFileTextBox.Text += "T00" + gridSourceCode.Rows
                                 [i].Cells[1].Value.ToString();
                             newT = false;
                         }
-                        TRegisterData += gridSourceCode.Rows
+                        dataRegT += gridSourceCode.Rows
                             [i].Cells[5].Value.ToString();
-                        TCounter += gridSourceCode.Rows[i].Cells[5].Value.ToString().Length / 2;
+                        counterRegT += gridSourceCode.Rows[i].Cells[5].Value.ToString().Length / 2;
                     }
                     else
                     {
-                        if (TCounter > 0)
+                        if (counterRegT > 0)
                         {
-                            if (String.Format("{0:X}", TCounter).Length == 1)
-                                ObjFileTextBox.Text += "0" + String.Format("{0:X}", TCounter);
+                            if (String.Format("{0:X}", counterRegT).Length == 1)
+                                objFileTextBox.Text += "0" + String.Format("{0:X}", counterRegT);
                             else
-                                ObjFileTextBox.Text += String.Format("{0:X}", TCounter);
+                                objFileTextBox.Text += String.Format("{0:X}", counterRegT);
                         }
-                        TCounter = 0;
-                        ObjFileTextBox.Text += TRegisterData;
-                        TRegisterData = "";
-                        if (ObjFileTextBox.Text.Last() != '\n')
-                            ObjFileTextBox.Text += "\n";
+                        counterRegT = 0;
+                        objFileTextBox.Text += dataRegT;
+                        dataRegT = "";
+                        if (objFileTextBox.Text.Last() != '\n')
+                            objFileTextBox.Text += "\n";
                         newT = true;
                     }
                 }
             }
-            if(TRegisterData != "")
+            if(dataRegT != "")
             {
-                if (TCounter > 0)
+                if (counterRegT > 0)
                 {
-                    if (String.Format("{0:X}", TCounter).Length == 1)
-                        ObjFileTextBox.Text += "0" + String.Format("{0:X}", TCounter);
+                    if (String.Format("{0:X}", counterRegT).Length == 1)
+                        objFileTextBox.Text += "0" + String.Format("{0:X}", counterRegT);
                     else
-                        ObjFileTextBox.Text += String.Format("{0:X}", TCounter);
+                        objFileTextBox.Text += String.Format("{0:X}", counterRegT);
                 }
-                TCounter = 0;
-                ObjFileTextBox.Text += TRegisterData;
-                TRegisterData = "";
-                if (ObjFileTextBox.Text.Last() != '\n')
-                    ObjFileTextBox.Text += "\n";
+                counterRegT = 0;
+                objFileTextBox.Text += dataRegT;
+                dataRegT = "";
+                if (objFileTextBox.Text.Last() != '\n')
+                    objFileTextBox.Text += "\n";
             }
 
             //E section
-            ObjFileTextBox.Text += "E00";
+            objFileTextBox.Text += "E00";
             if (gridSourceCode.Rows[gridSourceCode.RowCount - 2].Cells[4].Value == null)
-                ObjFileTextBox.Text += firstInstSaved;
+                objFileTextBox.Text += firstInstSaved;
             else
             {
                 if (InstructionSet.Data.ContainsKey(gridSourceCode.Rows
                     [gridSourceCode.RowCount - 2].Cells[4].Value.ToString()))
                 {
-                    ObjFileTextBox.Text += InstructionSet.Data[gridSourceCode.Rows
+                    objFileTextBox.Text += InstructionSet.Data[gridSourceCode.Rows
                         [gridSourceCode.RowCount - 2].Cells[4].Value.ToString()];
                 }
                 else
                 {
-                    ObjFileTextBox.Text += "FFFF";
+                    objFileTextBox.Text += "FFFF";
                 }
             }
             string name = System.IO.Path.GetFileNameWithoutExtension(CurrentFileName.Text);
-            File.WriteAllText(name + ".ob", ObjFileTextBox.Text);
+            File.WriteAllText(name + ".ob", objFileTextBox.Text);
+        }
+
+        private void BtnOpenObj_Click(object sender, EventArgs e)
+        {
+            //TOOD cargar archivo
+            string [] strOutput = objFileTextBox.Text.Split('\n');
+            for (int i = 1; i < strOutput.Count()-2; i++)
+            {
+                string addrs = strOutput[i].Substring(1, 6); //get current full address
+                int len = int.Parse(strOutput[i].Substring(7, 2), NumberStyles.HexNumber); //get lenght 
+                string strData = strOutput[i].Substring(9, strOutput[i].Count()-9);
+                for (int j = 0; j < len; j++)
+                {
+                    string row = addrs.Substring(0, 5); //get current addrs row
+                    string column = addrs.Substring(5, 1); //get current addrs column
+
+                    DataGridViewRow selectedRow = gridMapMemory.Rows.Where(Cells[0].value == row).first();
+
+                    int intColumValue = int.Parse(column, NumberStyles.HexNumber);
+                    selectedRow.Cells[intColumValue + 1].Value = strData.Substring(j * 2, 2);
+                    addrs = (int.Parse(column, NumberStyles.HexNumber) + 1).ToString("X"); //update addrs+1h
+                }
+            }
+
         }
     }
 }
