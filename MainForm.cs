@@ -20,6 +20,15 @@ namespace IDE_for_SIC_ASM
     {
         public Dictionary<string, string> tabsim;
         public List<long> PCs; // Program counters
+        public static Dictionary<String, int> Registers = new Dictionary<String, int>()
+        {
+            {"A", 0xFFFF},
+            {"CP", 0xFFFF},
+            {"DEV", 0xFFFF},
+            {"L", 0xFFFF},
+            {"X", 0xFFFF},
+            {"SW", -1}
+        };
 
         struct ParseResult
         {

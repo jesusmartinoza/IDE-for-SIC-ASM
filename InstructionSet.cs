@@ -37,5 +37,37 @@ namespace IDE_for_SIC_ASM
             {"TIX", 0x2C},
             {"WD", 0xDC}
         };
+
+
+       public static Dictionary<String, Instruction> Effect = new Dictionary<String, Instruction>()
+       {
+           {0x18, new Add()},
+           {0x40, new And()},
+           {0x28, new Comp()},
+           {0x24, new Div()},
+           {0x3C, new J()},
+           {0x30, new Jeq()},
+           {0x34, new Jgt()},
+           {0x38, new Jlt()},
+           {0x48, new Jsub()},
+           {0x00, new Lda()},
+           {0x50, new Ldch()},
+           {0x08, new Ldl()},
+           {0x04, new Ldx()},
+           {0x20, new Mul()},
+           {0x44, new Or()},
+           {0xD8, new Rd()},
+           {0x4C, new Rsub()},
+           {0x0C, new Sta()},
+           {0x54, new Stch()},
+           {0x14, new Stl()},
+           {0xE8, new Stsw()},
+           {0x10, new Stx()},
+           {0x1C, new Sub()},
+           {0xE0, new Td()},
+           {0x2C, new Tix()},
+           {0xDC, new Wd()}
+       };
+
     }
 }
