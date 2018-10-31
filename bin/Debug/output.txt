@@ -1,1 +1,5 @@
-Linea 19 con error: missing ID at '\n'
+Linea 3 con error: no viable alternative at input '    LD'
+Linea 16 con error: mismatched input 'C' expecting BYTEOP
+Linea 22 con error: mismatched input 'X' expecting BYTEOP
+Linea 23 con error: mismatched input 'ASD' expecting BYTEOP
+Linea 39 con error: no viable alternative at input ' \n'
