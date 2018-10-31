@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IDE_for_SIC_ASM
 {
@@ -38,8 +35,7 @@ namespace IDE_for_SIC_ASM
             {"WD", 0xDC}
         };
 
-
-       public static Dictionary<String, Instruction> Effect = new Dictionary<String, Instruction>()
+       public static Dictionary<int, Instruction> Effect = new Dictionary<int, Instruction>()
        {
            {0x18, new Add()},
            {0x40, new And()},
