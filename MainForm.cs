@@ -60,13 +60,15 @@ namespace IDE_for_SIC_ASM
             //BackColor = Color.FromArgb(66, 66, 80);
             PCs = new List<long>();
 
-            Dictionary<String, String> registers = new Dictionary<string, string>();
-            registers.Add("CP", "FFF");
-            registers.Add("A", "FFF");
-            registers.Add("X", "FFF");
-            registers.Add("L", "FFF");
-            registers.Add("SW", "FFF");
-            registers.Add("CC", "FFF");
+            Dictionary<String, String> registers = new Dictionary<string, string>
+            {
+                { "CP", "FFF" },
+                { "A", "FFF" },
+                { "X", "FFF" },
+                { "L", "FFF" },
+                { "SW", "FFF" },
+                { "CC", "FFF" }
+            };
 
             foreach (var r in registers)
             {
@@ -414,7 +416,7 @@ namespace IDE_for_SIC_ASM
         private void GenerateObjFile()
         {
             string firstInstSaved = "";
-            // H section
+            // H section ------------------------
             string programName = gridSourceCode.Rows[0].Cells[2].Value.ToString();
             if(programName.Length > 6)
                 programName = programName.Substring(0, 6);
@@ -426,7 +428,7 @@ namespace IDE_for_SIC_ASM
                 objFileTextBox.Text += "0";
             objFileTextBox.Text += progSize.Text + "\n";
 
-            //T section
+            //T section ---------------------------
             bool newT = true;
             bool firstInstruct = true;
             string dataRegT = "";
@@ -491,7 +493,7 @@ namespace IDE_for_SIC_ASM
                     objFileTextBox.Text += "\n";
             }
 
-            //E section
+            //E section --------------------------------
             objFileTextBox.Text += "E00";
             if (gridSourceCode.Rows[gridSourceCode.RowCount - 2].Cells[4].Value == null)
                 objFileTextBox.Text += firstInstSaved;
@@ -552,6 +554,27 @@ namespace IDE_for_SIC_ASM
                 GenerateMapMemory();
                 //BtnOpenObj_Click(sender, e);
             }
+        }
+
+        private void btnRunEffect_Click(object sender, EventArgs e)
+        {
+            int nLoops = (tbNumLoops.Text == "") ? 1 : int.Parse(tbNumLoops.Text);
+            tbNumLoops.Text = "";
+
+            string strRegE = objFileTextBox.Text.Split('\n').Last().Remove(0,1);
+            Registers["PC"] = int.Parse(strRegE, NumberStyles.HexNumber);
+
+            for (int i = 0; i < nLoops; i++)
+            {
+                string operation = Instruction.Map(gridMapMemory, Registers["PC"]);
+                tbEffects.Text+= InstructionSet.Effect[int.Parse(operation)].Effect(gridMapMemory, Registers["PC"]);
+            }
+        }
+
+        private void AutoRun(object sender, KeyPressEventArgs e)
+        {
+            if( e.KeyChar == 18)  // CTRL +  r 
+                btnRunEffect_Click(sender, e);
         }
     }
 }

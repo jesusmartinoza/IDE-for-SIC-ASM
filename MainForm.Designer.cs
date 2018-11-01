@@ -58,6 +58,11 @@
             this.ADDRESS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OBJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tbNumLoops = new System.Windows.Forms.TextBox();
+            this.btnRunEffect = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbEffects = new System.Windows.Forms.TextBox();
+            this.btnOpenFrom = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnOpenObj = new MaterialSkin.Controls.MaterialRaisedButton();
             this.gridRegisters = new System.Windows.Forms.DataGridView();
             this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,7 +85,6 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnOpenFrom = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -90,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegisters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).BeginInit();
             this.SuspendLayout();
@@ -131,6 +136,7 @@
             this.materialTabControl.Size = new System.Drawing.Size(834, 433);
             this.materialTabControl.TabIndex = 3;
             this.materialTabControl.TabStop = false;
+            this.materialTabControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AutoRun);
             // 
             // tabPage1
             // 
@@ -240,7 +246,6 @@
             this.TextBoxEditor.CharWidth = 8;
             this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
             this.TextBoxEditor.IsReplaceMode = false;
             this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
@@ -394,6 +399,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.tbNumLoops);
+            this.tabPage3.Controls.Add(this.btnRunEffect);
+            this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.btnOpenFrom);
             this.tabPage3.Controls.Add(this.btnOpenObj);
             this.tabPage3.Controls.Add(this.gridRegisters);
@@ -405,10 +413,65 @@
             this.tabPage3.Text = "Map Memory";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tbNumLoops
+            // 
+            this.tbNumLoops.Location = new System.Drawing.Point(678, 340);
+            this.tbNumLoops.Name = "tbNumLoops";
+            this.tbNumLoops.Size = new System.Drawing.Size(110, 20);
+            this.tbNumLoops.TabIndex = 16;
+            // 
+            // btnRunEffect
+            // 
+            this.btnRunEffect.Depth = 0;
+            this.btnRunEffect.Location = new System.Drawing.Point(687, 366);
+            this.btnRunEffect.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnRunEffect.Name = "btnRunEffect";
+            this.btnRunEffect.Primary = true;
+            this.btnRunEffect.Size = new System.Drawing.Size(91, 32);
+            this.btnRunEffect.TabIndex = 15;
+            this.btnRunEffect.Text = "Run";
+            this.btnRunEffect.UseVisualStyleBackColor = true;
+            this.btnRunEffect.Click += new System.EventHandler(this.btnRunEffect_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tbEffects);
+            this.groupBox3.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.groupBox3.Location = new System.Drawing.Point(10, 260);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(639, 144);
+            this.groupBox3.TabIndex = 14;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Effects Viewer";
+            // 
+            // tbEffects
+            // 
+            this.tbEffects.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.tbEffects.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbEffects.Location = new System.Drawing.Point(6, 19);
+            this.tbEffects.Multiline = true;
+            this.tbEffects.Name = "tbEffects";
+            this.tbEffects.ReadOnly = true;
+            this.tbEffects.Size = new System.Drawing.Size(621, 119);
+            this.tbEffects.TabIndex = 11;
+            // 
+            // btnOpenFrom
+            // 
+            this.btnOpenFrom.Depth = 0;
+            this.btnOpenFrom.Location = new System.Drawing.Point(687, 260);
+            this.btnOpenFrom.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnOpenFrom.Name = "btnOpenFrom";
+            this.btnOpenFrom.Primary = true;
+            this.btnOpenFrom.Size = new System.Drawing.Size(91, 32);
+            this.btnOpenFrom.TabIndex = 6;
+            this.btnOpenFrom.Text = "Open From OBJ";
+            this.btnOpenFrom.UseVisualStyleBackColor = true;
+            this.btnOpenFrom.Click += new System.EventHandler(this.btnOpenFrom_Click);
+            // 
             // btnOpenObj
             // 
             this.btnOpenObj.Depth = 0;
-            this.btnOpenObj.Location = new System.Drawing.Point(702, 239);
+            this.btnOpenObj.Location = new System.Drawing.Point(687, 222);
             this.btnOpenObj.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnOpenObj.Name = "btnOpenObj";
             this.btnOpenObj.Primary = true;
@@ -425,10 +488,10 @@
             this.gridRegisters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Register,
             this.Value});
-            this.gridRegisters.Location = new System.Drawing.Point(674, 12);
+            this.gridRegisters.Location = new System.Drawing.Point(664, 12);
             this.gridRegisters.Name = "gridRegisters";
             this.gridRegisters.RowHeadersVisible = false;
-            this.gridRegisters.Size = new System.Drawing.Size(143, 208);
+            this.gridRegisters.Size = new System.Drawing.Size(141, 188);
             this.gridRegisters.TabIndex = 1;
             // 
             // Register
@@ -467,7 +530,7 @@
             this.gridMapMemory.Location = new System.Drawing.Point(10, 12);
             this.gridMapMemory.Name = "gridMapMemory";
             this.gridMapMemory.RowHeadersVisible = false;
-            this.gridMapMemory.Size = new System.Drawing.Size(644, 380);
+            this.gridMapMemory.Size = new System.Drawing.Size(627, 242);
             this.gridMapMemory.TabIndex = 0;
             // 
             // addr
@@ -573,19 +636,6 @@
             this.Column15.Name = "Column15";
             this.Column15.Width = 35;
             // 
-            // btnOpenFrom
-            // 
-            this.btnOpenFrom.Depth = 0;
-            this.btnOpenFrom.Location = new System.Drawing.Point(702, 294);
-            this.btnOpenFrom.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnOpenFrom.Name = "btnOpenFrom";
-            this.btnOpenFrom.Primary = true;
-            this.btnOpenFrom.Size = new System.Drawing.Size(91, 32);
-            this.btnOpenFrom.TabIndex = 6;
-            this.btnOpenFrom.Text = "Open From OBJ";
-            this.btnOpenFrom.UseVisualStyleBackColor = true;
-            this.btnOpenFrom.Click += new System.EventHandler(this.btnOpenFrom_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,6 +660,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegisters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).EndInit();
             this.ResumeLayout(false);
@@ -666,6 +719,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenObj;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenFrom;
+        private MaterialSkin.Controls.MaterialRaisedButton btnRunEffect;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox tbEffects;
+        private System.Windows.Forms.TextBox tbNumLoops;
     }
 }
 
