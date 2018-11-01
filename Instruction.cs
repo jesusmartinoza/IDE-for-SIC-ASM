@@ -57,7 +57,7 @@ namespace IDE_for_SIC_ASM
 
             int intColumValue = int.Parse(column, NumberStyles.HexNumber);
 
-            for(var i = 0; i < nLoops; i++)
+            for (var i = 0; i < nLoops; i++)
             {
                 selectedRow.Cells[intColumValue + 1 + i].Value = numStr.Substring(i * 2, 2);
                 selectedRow.Cells[intColumValue + 1 + i].Style.BackColor = Color.Yellow;
@@ -70,13 +70,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] += int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: ADD";
             output += "\n Effect: A <- (A) +" + content;
             output += "\n-----------------------------\n";
@@ -90,13 +90,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] &= int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: AND";
             output += "\n Effect: A <- (A) & " + content;
             output += "\n-----------------------------\n";
@@ -110,7 +110,7 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
             int num = int.Parse(content, NumberStyles.HexNumber);
 
@@ -121,9 +121,9 @@ namespace IDE_for_SIC_ASM
             else
                 MainForm.Registers["SW"] = -1;
 
-           MainForm.Registers["CP"] += 3;
+            MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: COMP";
             output += "\n Effect: (A) : " + content;
             output += "\n SW = " + MainForm.Registers["SW"];
@@ -138,13 +138,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] /= int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: DIV";
             output += "\n Effect: A <- (A) / " + content;
             output += "\n-----------------------------\n";
@@ -158,11 +158,11 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
 
             MainForm.Registers["CP"] = m;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: J";
             output += "\n Effect: CP <- " + m;
             output += "\n-----------------------------\n";
@@ -176,14 +176,14 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
 
-            if(MainForm.Registers["SW"] == 0)
+            if (MainForm.Registers["SW"] == 0)
             {
                 MainForm.Registers["CP"] = m;
             }
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JEQ";
             output += "\n Effect: CP <- " + MainForm.Registers["CP"];
             output += "\n-----------------------------\n";
@@ -197,14 +197,14 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
 
             if (MainForm.Registers["SW"] == 1)
             {
                 MainForm.Registers["CP"] = m;
             }
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JGT";
             output += "\n Effect: CP <- " + MainForm.Registers["CP"];
             output += "\n-----------------------------\n";
@@ -218,14 +218,14 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
 
             if (MainForm.Registers["SW"] == -1)
             {
                 MainForm.Registers["CP"] = m;
             }
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JLT";
             output += "\n Effect: CP <- " + MainForm.Registers["CP"];
             output += "\n-----------------------------\n";
@@ -239,13 +239,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["L"] = MainForm.Registers["CP"];
             MainForm.Registers["CP"] = int.Parse(content, NumberStyles.HexNumber);
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JSUB";
             output += "\n Effect: L <- (" + MainForm.Registers["L"] + ")";
             output += "\n\t CP <- (" + content + ")";
@@ -260,13 +260,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] = int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: LDA";
             output += "\n Effect: A <- " + content;
             output += "\n-----------------------------\n";
@@ -280,13 +280,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             int content = int.Parse(Map(mapMemory, m), NumberStyles.HexNumber);
 
             MainForm.Registers["A"] = ReplaceRight(MainForm.Registers["A"], content);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: LDCH";
             output += "\n Effect: A[byte mas a la derecha] <- " + content;
             output += "\n-----------------------------\n";
@@ -300,13 +300,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["L"] = int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: LDL";
             output += "\n Effect: L <- " + content;
             output += "\n-----------------------------\n";
@@ -320,13 +320,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["X"] = int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: LDX";
             output += "\n Effect: X <- " + content;
             output += "\n-----------------------------\n";
@@ -340,13 +340,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] *= int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: MUL";
             output += "\n Effect: A <- (A) * " + content;
             output += "\n-----------------------------\n";
@@ -360,13 +360,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] |= int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: OR";
             output += "\n Effect: A <- (A) | " + content;
             output += "\n-----------------------------\n";
@@ -380,13 +380,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             int content = int.Parse(Map(mapMemory, m), NumberStyles.HexNumber);
 
             MainForm.Registers["A"] = ReplaceRight(MainForm.Registers["A"], content);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: RD";
             output += "\n Effect: A[byte mas a la derecha] <- no sabemos profe :) " + content;
             output += "\n-----------------------------\n";
@@ -400,11 +400,11 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
 
             MainForm.Registers["CP"] = MainForm.Registers["L"];
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: RSUB";
             output += "\n Effect: CP <- " + MainForm.Registers["L"];
             output += "\n-----------------------------\n";
@@ -418,15 +418,15 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["A"], 3);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STA";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["A"].ToString("XXXXXX");
+            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["A"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -439,15 +439,15 @@ namespace IDE_for_SIC_ASM
         {
             // Get DataGridView row that matches the current row value
             // TODO: Hacer bien este efecto
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["A"], 1);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STA";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["A"].ToString("XXXXXX");
+            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["A"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -459,15 +459,15 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["L"], 3);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STL";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["L"].ToString("XXXXXX");
+            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["L"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -479,15 +479,15 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["SW"], 3);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STSW";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["SW"].ToString("XXXXXX");
+            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["SW"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -499,15 +499,15 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["X"], 3);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["X"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["X"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STX";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["X"].ToString("XXXXXX");
+            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["X"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -519,13 +519,13 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] -= int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: SUB";
             output += "\n Effect: A <- (A) - " + content;
             output += "\n-----------------------------\n";
@@ -540,13 +540,13 @@ namespace IDE_for_SIC_ASM
         {
             // Get DataGridView row that matches the current row value
             // TODO: Completar chido esta funcion
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] += int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: ADD";
             output += "\n Effect: A <- " + content;
             output += "\n-----------------------------\n";
@@ -560,7 +560,7 @@ namespace IDE_for_SIC_ASM
         public override String Effect(DataGridView mapMemory, int m)
         {
             // Get DataGridView row that matches the current row value
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
             int num = int.Parse(content, NumberStyles.HexNumber);
 
@@ -575,7 +575,7 @@ namespace IDE_for_SIC_ASM
 
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: TIX";
             output += "\n Effect: X <- " + MainForm.Registers["X"] + "; (X) : " + content;
             output += "\n SW = " + MainForm.Registers["SW"];
@@ -591,13 +591,13 @@ namespace IDE_for_SIC_ASM
         {
             // Get DataGridView row that matches the current row value
             // TODO: Implementar chido
-            String output = "\n CP: " + MainForm.Registers["CP"].ToString("XXXXXX");
+            String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             String content = Map(mapMemory, m) + Map(mapMemory, m + 1) + Map(mapMemory, m + 2);
 
             MainForm.Registers["A"] += int.Parse(content, NumberStyles.HexNumber);
             MainForm.Registers["CP"] += 3;
 
-            output += " => " + MainForm.Registers["CP"].ToString("XXXXXX");
+            output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: ADD";
             output += "\n Effect: A <- " + content;
             output += "\n-----------------------------\n";
