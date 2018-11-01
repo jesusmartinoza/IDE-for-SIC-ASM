@@ -60,21 +60,11 @@ namespace IDE_for_SIC_ASM
             //BackColor = Color.FromArgb(66, 66, 80);
             PCs = new List<long>();
 
-            Dictionary<String, String> registers = new Dictionary<string, string>
-            {
-                { "CP", "FFF" },
-                { "A", "FFF" },
-                { "X", "FFF" },
-                { "L", "FFF" },
-                { "SW", "FFF" },
-                { "CC", "FFF" }
-            };
-
-            foreach (var r in registers)
+            foreach (var r in Registers)
             {
                 String[] data = new String[]
                 {
-                    r.Key, r.Value
+                    r.Key, r.Value.ToString()
                 };
                 gridRegisters.Rows.Add(data);
             }
@@ -568,6 +558,7 @@ namespace IDE_for_SIC_ASM
             {
                 string operation = Instruction.Map(gridMapMemory, Registers["CP"]);
                 tbEffects.Text+= InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, Registers["CP"]);
+                UpdateRegGrid();
             }
         }
 
@@ -575,6 +566,16 @@ namespace IDE_for_SIC_ASM
         {
             if( e.KeyChar == 18)  // CTRL +  r 
                 btnRunEffect_Click(sender, e);
+        }
+
+        private void UpdateRegGrid ()
+        {
+            int i = 0;
+            foreach (var r in Registers)
+            {
+                gridRegisters.Rows[i].Cells[1].Value = r.Value;
+                i++;
+            }
         }
     }
 }
