@@ -562,12 +562,12 @@ namespace IDE_for_SIC_ASM
             tbNumLoops.Text = "";
 
             string strRegE = objFileTextBox.Text.Split('\n').Last().Remove(0,1);
-            Registers["PC"] = int.Parse(strRegE, NumberStyles.HexNumber);
+            Registers["CP"] = int.Parse(strRegE, NumberStyles.HexNumber);
 
             for (int i = 0; i < nLoops; i++)
             {
-                string operation = Instruction.Map(gridMapMemory, Registers["PC"]);
-                tbEffects.Text+= InstructionSet.Effect[int.Parse(operation)].Effect(gridMapMemory, Registers["PC"]);
+                string operation = Instruction.Map(gridMapMemory, Registers["CP"]);
+                tbEffects.Text+= InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, Registers["CP"]);
             }
         }
 

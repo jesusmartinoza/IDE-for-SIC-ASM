@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRunASM = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
@@ -246,6 +246,7 @@
             this.TextBoxEditor.CharWidth = 8;
             this.TextBoxEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBoxEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.TextBoxEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBoxEditor.IndentBackColor = System.Drawing.Color.DimGray;
             this.TextBoxEditor.IsReplaceMode = false;
             this.TextBoxEditor.LineNumberColor = System.Drawing.Color.MintCream;
@@ -315,14 +316,14 @@
             this.dataGridViewTextBoxColumn2});
             this.tabsimGrid.Location = new System.Drawing.Point(520, 22);
             this.tabsimGrid.Name = "tabsimGrid";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tabsimGrid.RowHeadersVisible = false;
             this.tabsimGrid.Size = new System.Drawing.Size(123, 267);
             this.tabsimGrid.TabIndex = 1;
@@ -353,14 +354,14 @@
             this.OBJ});
             this.gridSourceCode.Location = new System.Drawing.Point(6, 21);
             this.gridSourceCode.Name = "gridSourceCode";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridSourceCode.RowHeadersVisible = false;
             this.gridSourceCode.Size = new System.Drawing.Size(506, 267);
             this.gridSourceCode.TabIndex = 0;
@@ -437,7 +438,7 @@
             // 
             this.groupBox3.Controls.Add(this.tbEffects);
             this.groupBox3.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.groupBox3.Location = new System.Drawing.Point(10, 260);
+            this.groupBox3.Location = new System.Drawing.Point(10, 216);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(639, 144);
             this.groupBox3.TabIndex = 14;
@@ -448,7 +449,7 @@
             // 
             this.tbEffects.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.tbEffects.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbEffects.Location = new System.Drawing.Point(6, 19);
+            this.tbEffects.Location = new System.Drawing.Point(6, 14);
             this.tbEffects.Multiline = true;
             this.tbEffects.Name = "tbEffects";
             this.tbEffects.ReadOnly = true;
@@ -530,7 +531,7 @@
             this.gridMapMemory.Location = new System.Drawing.Point(10, 12);
             this.gridMapMemory.Name = "gridMapMemory";
             this.gridMapMemory.RowHeadersVisible = false;
-            this.gridMapMemory.Size = new System.Drawing.Size(627, 242);
+            this.gridMapMemory.Size = new System.Drawing.Size(627, 188);
             this.gridMapMemory.TabIndex = 0;
             // 
             // addr

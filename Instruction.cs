@@ -15,8 +15,9 @@ namespace IDE_for_SIC_ASM
 
         public static String Map(DataGridView mapMemory, int m)
         {
-            String row = m.ToString().Substring(0, m.ToString().Count() - 1);
-            String column = m.ToString().Substring(m.ToString().Count() - 1, 1);
+            String addrs = m.ToString("X").PadLeft(6, '0');
+            String row = addrs.ToString().Substring(0, addrs.ToString().Count() - 1);
+            String column = addrs.ToString().Substring(addrs.ToString().Count() - 1, 1);
 
             // Get DataGridView row that matches the current row value
             DataGridViewRow selectedRow = mapMemory.Rows
