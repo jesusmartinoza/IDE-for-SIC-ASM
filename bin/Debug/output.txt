@@ -1,5 +1,20 @@
-Linea 3 con error: no viable alternative at input '    LD'
-Linea 16 con error: mismatched input 'C' expecting BYTEOP
-Linea 22 con error: mismatched input 'X' expecting BYTEOP
-Linea 23 con error: mismatched input 'ASD' expecting BYTEOP
-Linea 39 con error: no viable alternative at input ' \n'
+Linea 0 con error: extraneous input '          ' expecting '
+'
+Linea 1 con error: extraneous input '         ' expecting '
+'
+Linea 2 con error: extraneous input '       ' expecting '
+'
+Linea 3 con error: extraneous input '       ' expecting '
+'
+Linea 4 con error: extraneous input '       ' expecting '
+'
+Linea 5 con error: extraneous input '   ' expecting '
+'
+Linea 6 con error: mismatched input 'C' expecting BYTEOP
+Linea 7 con error: extraneous input '           ' expecting '
+'
+Linea 8 con error: extraneous input '            ' expecting '
+'
+Linea 9 con error: extraneous input '           ' expecting '
+'
+Linea 11 con error: missing ID at '\n'

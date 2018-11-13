@@ -64,8 +64,8 @@ namespace IDE_for_SIC_ASM
             {
                 String[] data = new String[]
                 {
-                    r.Key, r.Value.ToString()
-                };
+                    r.Key, r.Value.ToString("X").PadLeft(6, '0')
+            };
                 gridRegisters.Rows.Add(data);
             }
         }
@@ -484,9 +484,9 @@ namespace IDE_for_SIC_ASM
             }
 
             //E section --------------------------------
-            objFileTextBox.Text += "E00";
+            objFileTextBox.Text += "E";
             if (gridSourceCode.Rows[gridSourceCode.RowCount - 2].Cells[4].Value == null)
-                objFileTextBox.Text += firstInstSaved;
+                objFileTextBox.Text += firstInstSaved.PadLeft(6,'0');
             else
             {
                 if (InstructionSet.Data.ContainsKey(gridSourceCode.Rows
@@ -543,6 +543,8 @@ namespace IDE_for_SIC_ASM
                 objFileTextBox.Text = File.ReadAllText(OpenDialog.FileName);
                 GenerateMapMemory();
                 //BtnOpenObj_Click(sender, e);
+                string strRegE = objFileTextBox.Text.Split('\n').Last().Remove(0, 1);
+                Registers["CP"] = int.Parse(strRegE, NumberStyles.HexNumber);
             }
         }
 
@@ -551,13 +553,12 @@ namespace IDE_for_SIC_ASM
             int nLoops = (tbNumLoops.Text == "") ? 1 : int.Parse(tbNumLoops.Text);
             tbNumLoops.Text = "";
 
-            string strRegE = objFileTextBox.Text.Split('\n').Last().Remove(0,1);
-            Registers["CP"] = int.Parse(strRegE, NumberStyles.HexNumber);
+
 
             for (int i = 0; i < nLoops; i++)
             {
                 string operation = Instruction.Map(gridMapMemory, Registers["CP"]);
-                tbEffects.Text+= InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, Registers["CP"]);
+                tbEffects.Text+= "\n"+InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, Registers["CP"]) ;
                 UpdateRegGrid();
             }
         }
@@ -573,7 +574,7 @@ namespace IDE_for_SIC_ASM
             int i = 0;
             foreach (var r in Registers)
             {
-                gridRegisters.Rows[i].Cells[1].Value = r.Value;
+                gridRegisters.Rows[i].Cells[1].Value = r.Value.ToString("X").PadLeft(6, '0');
                 i++;
             }
         }
