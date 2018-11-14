@@ -1,7 +1,2 @@
-Linea 1 con error: no viable alternative at input 'FIRST   LDX'
-Linea 2 con error: no viable alternative at input '        LDA'
-Linea 3 con error: no viable alternative at input 'LOOP    ADD'
-Linea 4 con error: no viable alternative at input '    TIX'
-Linea 6 con error: no viable alternative at input '    JLT'
-Linea 7 con error: no viable alternative at input '    STA'
-Linea 19 con error: missing ID at '\n'
+Linea 3 con error: mismatched input '1' expecting {'
+', SEP}

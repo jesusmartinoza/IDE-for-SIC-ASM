@@ -81,6 +81,16 @@ public interface ISicGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitInstruccion([NotNull] SicGrammarParser.InstruccionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDirectiva([NotNull] SicGrammarParser.DirectivaContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDirectiva([NotNull] SicGrammarParser.DirectivaContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SicGrammarParser.formatuno"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -110,14 +120,4 @@ public interface ISicGrammarListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitFormatres([NotNull] SicGrammarParser.FormatresContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDirectiva([NotNull] SicGrammarParser.DirectivaContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDirectiva([NotNull] SicGrammarParser.DirectivaContext context);
 }

@@ -74,7 +74,7 @@ namespace IDE_for_SIC_ASM
         {
             String[] data =
             {
-                    line.ToString(), PC.ToString("X"), result.symbol, result.instruction, result.op, result.obj
+                    line.ToString(), PC.ToString("X").PadLeft(4, '0'), result.symbol, result.instruction, result.op, result.obj
             };
             gridSourceCode.Rows.Add(data);
         }
@@ -101,7 +101,7 @@ namespace IDE_for_SIC_ASM
             {
                 if (!error.Message.Contains("input ' '"))
                 {
-                    tbErrors.Text += @"Linea " + lineNumber + " con error: " + error.Message;
+                    tbErrors.Text += @"Linea " + (lineNumber+1) + " con error: " + error.Message;
                     tbErrors.Text += "\r\n";
                     success = false;
                 }
@@ -130,7 +130,7 @@ namespace IDE_for_SIC_ASM
                         result.instruction = t.Text;
                         instructDetected = true;
                         break;
-                    case "RSUB":
+                    case "'RSUB'":
                         result.instruction = "RSUB";
                         result.type = "RSUB";
                         break;

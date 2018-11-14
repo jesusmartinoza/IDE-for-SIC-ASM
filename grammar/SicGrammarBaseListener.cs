@@ -95,6 +95,18 @@ public partial class SicGrammarBaseListener : ISicGrammarListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitInstruccion([NotNull] SicGrammarParser.InstruccionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDirectiva([NotNull] SicGrammarParser.DirectivaContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDirectiva([NotNull] SicGrammarParser.DirectivaContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SicGrammarParser.formatuno"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -130,18 +142,6 @@ public partial class SicGrammarBaseListener : ISicGrammarListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFormatres([NotNull] SicGrammarParser.FormatresContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDirectiva([NotNull] SicGrammarParser.DirectivaContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDirectiva([NotNull] SicGrammarParser.DirectivaContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

@@ -69,10 +69,10 @@ C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\bin\Debug\IDE 
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\bin\Debug\IDE for SIC ASM.pdb
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\bin\Debug\FastColoredTextBox.dll
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\bin\Debug\FastColoredTextBox.xml
-C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csprojResolveAssemblyReference.cache
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE_for_SIC_ASM.MainForm.resources
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE_for_SIC_ASM.Properties.Resources.resources
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.GenerateResource.Cache
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.CoreCompileInputs.cache
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.exe
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.pdb
+C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csprojResolveAssemblyReference.cache

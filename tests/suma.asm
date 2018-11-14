@@ -1,4 +1,5 @@
 SUM     START   400FH
+RSUB
 FIRST   LDX ZERO
         LDA ZERO
 LOOP    ADD TABLE, X
@@ -6,7 +7,6 @@ LOOP    ADD TABLE, X
 COUNT   RESW    10
     JLT LOOP
     STA TOTAL
-RSUB
 TABLE   BYTE    C'hola'
 TABLON   BYTE    X'000'
 TABLOa   BYTE    X'F0'
@@ -16,4 +16,4 @@ ZERO    WORD    10
 ZERO    WORD    FH
 TOTAL   RESW    2
 TOTAL   RESW    AH
-    END 
+    END
