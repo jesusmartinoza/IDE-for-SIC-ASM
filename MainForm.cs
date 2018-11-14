@@ -316,17 +316,23 @@ namespace IDE_for_SIC_ASM
 
                         if (op != null)
                         {
+                            int intValue = 0;
+                            if (op.ToString().Contains(","))
+                            {
+                                intValue += 32768;
+                                int indexToBolillo = op.ToString().IndexOf(',');
+                                op = op.ToString().Substring(0, indexToBolillo);
+                            }
+                                
+
                             if (tabsim.Keys.Contains(op.ToString()))
                             {   // Direccion en tabsim
-                                int intValue = int.Parse(tabsim[op.ToString()], NumberStyles.HexNumber);
-
-                                if (instruction.Contains(", X"))
-                                    intValue += 32768;
-                                objectCode += intValue.ToString("X");
+                                intValue += int.Parse(tabsim[op.ToString()], NumberStyles.HexNumber);
+                                objectCode += String.Format("{0:x4}", intValue);
                             }
                             else
                             {   //no encontrado -> 7fff
-                                objectCode += "7FFF";
+                                objectCode += "7FFF"; 
                             }
                         }
                         else
@@ -383,24 +389,26 @@ namespace IDE_for_SIC_ASM
         private void GenerateMapMemory()
         {
             gridMapMemory.Rows.Clear();
-            int startAddr = int.Parse(objFileTextBox.Text.Substring(7, 5),
+            int startAddr = int.Parse(objFileTextBox.Text.Substring(7, 6),
                 NumberStyles.HexNumber);
 
-            int length = int.Parse(objFileTextBox.Text.Substring(12, 6),
+            int length = int.Parse(objFileTextBox.Text.Substring(13, 6),
                 NumberStyles.HexNumber);
 
             int endAddr = startAddr + length;
 
-            for (long i = startAddr; i <= endAddr; i+=16)
+            for (long i = startAddr; i <= endAddr + 16; i += 16)
             {
                 String[] data = new String[17];
                 data = data.Select(d => "FF").ToArray();
                 data[0] = i.ToString("X")
-                    .Substring(0, i.ToString("X").Length -1 ) // Remove last char
+                    .Substring(0, i.ToString("X").Length - 1) // Remove last char
                     .PadLeft(5, '0');
 
                 gridMapMemory.Rows.Add(data);
             }
+            Registers["CP"] = int.Parse(objFileTextBox.Text.Substring(objFileTextBox.Text.Count() - 6, 6),
+                NumberStyles.HexNumber);
         }
 
         private void GenerateObjFile()
@@ -508,7 +516,7 @@ namespace IDE_for_SIC_ASM
         {
             //TOOD cargar archivo
             string [] strOutput = objFileTextBox.Text.Split('\n');
-            for (int i = 1; i < strOutput.Count()-2; i++)
+            for (int i = 1; i < strOutput.Count()-1; i++)
             {
                 string addrs = strOutput[i].Substring(1, 6); //get current full address
                 int len = int.Parse(strOutput[i].Substring(7, 2), NumberStyles.HexNumber); //get lenght 
@@ -556,7 +564,9 @@ namespace IDE_for_SIC_ASM
             for (int i = 0; i < nLoops; i++)
             {
                 string operation = Instruction.Map(gridMapMemory, Registers["CP"]);
-                tbEffects.Text+= "\n"+InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, Registers["CP"]) ;
+                String targetAddrs = Instruction.Map(gridMapMemory, Registers["CP"] + 1) + Instruction.Map(gridMapMemory, Registers["CP"] + 2);
+                int content = int.Parse(targetAddrs, NumberStyles.HexNumber);
+                tbEffects.Text+= "\n"+InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, content) ;
                 UpdateRegGrid();
             }
         }

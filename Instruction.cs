@@ -11,10 +11,16 @@ namespace IDE_for_SIC_ASM
 {
     abstract class Instruction
     {
+        public static bool isIndex;
         public abstract String Effect(DataGridView mapMemory, int m);
 
         public static String Map(DataGridView mapMemory, int m)
         {
+            isIndex = false;
+            if(m> 32768) {
+                m -= 32768;
+                isIndex = true;
+            }
             String addrs = m.ToString("X").PadLeft(6, '0');
             String row = addrs.ToString().Substring(0, addrs.ToString().Count() - 1);
             String column = addrs.ToString().Substring(addrs.ToString().Count() - 1, 1);
