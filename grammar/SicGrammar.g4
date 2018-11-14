@@ -13,13 +13,13 @@ options {
 programa: inicio (proposicion)+  fin;
 inicio: ID SEP 'START' SEP NUM FINL;
 fin: SEP 'END' (SEP ID)? FINL?;
-proposicion: (instruccion | directiva | RSUB) FINL;
-instruccion: ID? SEP (formatuno | formatdos | ('+'? formatres));
+proposicion: ((ID SEP) | SEP)? (instruccion | directiva | RSUB) SEP? FINL;
+instruccion:(formatuno | formatdos | ('+'? formatres));
+RSUB:'RSUB';
+directiva:('BYTE' SEP BYTEOP | (TIPODIRECTIVA SEP NUM));
 formatuno: INSTRUNO;
 formatdos: (INSFDOSRR SEP REG SEP ',' SEP REG) | (INSFDOSRN SEP REG SEP ',' SEP NUM) | ('SVC' SEP REG SEP ',' SEP NUM) | (INSFDOSR SEP REG SEP ',' SEP NUM);
 formatres: INSTRES SEP MODIR? ID INDEX?;
-RSUB: ((ID SEP) | SEP)? 'RSUB' SEP?;
-directiva: ID? SEP ('BYTE' SEP BYTEOP | (TIPODIRECTIVA SEP NUM));
 
 /*
  * Lexer Rules

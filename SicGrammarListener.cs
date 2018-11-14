@@ -81,6 +81,36 @@ public interface ISicGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitInstruccion([NotNull] SicGrammarParser.InstruccionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SicGrammarParser.formatuno"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFormatuno([NotNull] SicGrammarParser.FormatunoContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SicGrammarParser.formatuno"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFormatuno([NotNull] SicGrammarParser.FormatunoContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SicGrammarParser.formatdos"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFormatdos([NotNull] SicGrammarParser.FormatdosContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SicGrammarParser.formatdos"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFormatdos([NotNull] SicGrammarParser.FormatdosContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SicGrammarParser.formatres"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFormatres([NotNull] SicGrammarParser.FormatresContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SicGrammarParser.formatres"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFormatres([NotNull] SicGrammarParser.FormatresContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

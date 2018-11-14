@@ -95,6 +95,42 @@ public partial class SicGrammarBaseListener : ISicGrammarListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitInstruccion([NotNull] SicGrammarParser.InstruccionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SicGrammarParser.formatuno"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFormatuno([NotNull] SicGrammarParser.FormatunoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SicGrammarParser.formatuno"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFormatuno([NotNull] SicGrammarParser.FormatunoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SicGrammarParser.formatdos"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFormatdos([NotNull] SicGrammarParser.FormatdosContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SicGrammarParser.formatdos"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFormatdos([NotNull] SicGrammarParser.FormatdosContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SicGrammarParser.formatres"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFormatres([NotNull] SicGrammarParser.FormatresContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SicGrammarParser.formatres"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFormatres([NotNull] SicGrammarParser.FormatresContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SicGrammarParser.directiva"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
