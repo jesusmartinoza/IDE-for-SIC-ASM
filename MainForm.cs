@@ -20,6 +20,9 @@ namespace IDE_for_SIC_ASM
     {
         public Dictionary<string, string> tabsim;
         public List<long> PCs; // Program counters
+        int startAddr = 0;
+        int length = 0;
+        int endAddr = 0;
         public static Dictionary<String, int> Registers = new Dictionary<String, int>()
         {
             {"A", 0xFFFF},
@@ -389,13 +392,13 @@ namespace IDE_for_SIC_ASM
         private void GenerateMapMemory()
         {
             gridMapMemory.Rows.Clear();
-            int startAddr = int.Parse(objFileTextBox.Text.Substring(7, 6),
+            startAddr = int.Parse(objFileTextBox.Text.Substring(7, 6),
                 NumberStyles.HexNumber);
 
-            int length = int.Parse(objFileTextBox.Text.Substring(13, 6),
+            length = int.Parse(objFileTextBox.Text.Substring(13, 6),
                 NumberStyles.HexNumber);
 
-            int endAddr = startAddr + length;
+            endAddr = startAddr + length;
 
             for (long i = startAddr; i <= endAddr + 16; i += 16)
             {
@@ -558,17 +561,18 @@ namespace IDE_for_SIC_ASM
         {
             int nLoops = (tbNumLoops.Text == "") ? 1 : int.Parse(tbNumLoops.Text);
             tbNumLoops.Text = "";
-
-
-
-            for (int i = 0; i < nLoops; i++)
+            if(Registers["CP"] <= endAddr)
             {
-                string operation = Instruction.Map(gridMapMemory, Registers["CP"]);
-                String targetAddrs = Instruction.Map(gridMapMemory, Registers["CP"] + 1) + Instruction.Map(gridMapMemory, Registers["CP"] + 2);
-                int content = int.Parse(targetAddrs, NumberStyles.HexNumber);
-                tbEffects.Text+= "\n"+InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, content) ;
-                UpdateRegGrid();
-            }
+                for (int i = 0; i < nLoops; i++)
+                {
+                    string operation = Instruction.Map(gridMapMemory, Registers["CP"]);
+                    String targetAddrs = Instruction.Map(gridMapMemory, Registers["CP"] + 1) + Instruction.Map(gridMapMemory, Registers["CP"] + 2);
+                    int content = int.Parse(targetAddrs, NumberStyles.HexNumber);
+                    tbEffects.Text += "\n" + InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, content);
+                    tbEffects.Text += "\n";
+                    UpdateRegGrid();
+                }
+            }   
         }
 
         private void AutoRun(object sender, KeyPressEventArgs e)

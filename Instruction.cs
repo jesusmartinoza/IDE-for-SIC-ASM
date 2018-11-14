@@ -20,7 +20,9 @@ namespace IDE_for_SIC_ASM
             if(m> 32768) {
                 m -= 32768;
                 isIndex = true;
+                m += MainForm.Registers["X"];
             }
+            
             String addrs = m.ToString("X").PadLeft(6, '0');
             String row = addrs.ToString().Substring(0, addrs.ToString().Count() - 1);
             String column = addrs.ToString().Substring(addrs.ToString().Count() - 1, 1);
@@ -52,8 +54,16 @@ namespace IDE_for_SIC_ASM
 
         public void ReplaceMapMemory(DataGridView mapMemory, int m, int num, int nLoops)
         {
-            String row = m.ToString().Substring(0, m.ToString().Count() - 1);
-            String column = m.ToString().Substring(m.ToString().Count() - 1, 1);
+            isIndex = false;
+            if (m > 32768)
+            {
+                m -= 32768;
+                m += MainForm.Registers["X"];
+            }
+
+            String addrs = m.ToString("X").PadLeft(6, '0');
+            String row = addrs.ToString().Substring(0, addrs.ToString().Count() - 1);
+            String column = addrs.ToString().Substring(addrs.ToString().Count() - 1, 1);
             String numStr = num.ToString("X").PadLeft(6, '0');
 
             DataGridViewRow selectedRow = mapMemory.Rows
@@ -62,6 +72,8 @@ namespace IDE_for_SIC_ASM
                                           .First();
 
             int intColumValue = int.Parse(column, NumberStyles.HexNumber);
+            if (nLoops == 1)
+                numStr = numStr.Substring(4, 2);// new string(numStr.Reverse().ToArray());
 
             for (var i = 0; i < nLoops; i++)
             {
@@ -183,6 +195,7 @@ namespace IDE_for_SIC_ASM
         {
             // Get DataGridView row that matches the current row value
             String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
+            MainForm.Registers["CP"] += 3;
 
             if (MainForm.Registers["SW"] == 0)
             {
@@ -204,6 +217,7 @@ namespace IDE_for_SIC_ASM
         {
             // Get DataGridView row that matches the current row value
             String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
+            MainForm.Registers["CP"] += 3;
 
             if (MainForm.Registers["SW"] == 1)
             {
@@ -225,11 +239,13 @@ namespace IDE_for_SIC_ASM
         {
             // Get DataGridView row that matches the current row value
             String output = "\n CP: " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
+            MainForm.Registers["CP"] += 3;
 
             if (MainForm.Registers["SW"] == -1)
             {
                 MainForm.Registers["CP"] = m;
             }
+            
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JLT";
@@ -452,7 +468,7 @@ namespace IDE_for_SIC_ASM
             MainForm.Registers["CP"] += 3;
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
-            output += "\n Operator: STA";
+            output += "\n Operator: STCH";
             output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["A"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
