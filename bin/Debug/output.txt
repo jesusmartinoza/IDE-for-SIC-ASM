@@ -1,2 +1,1 @@
-Linea 10 con error: extraneous input ',    X' expecting {',', SEP}
-Linea 11 con error: extraneous input '2' expecting {SEP, NUMH}
+Linea 11 con error: mismatched input '2H' expecting NUMH
