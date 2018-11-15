@@ -46,6 +46,7 @@ namespace IDE_for_SIC_ASM
             public String op; // Operador de la instruccion. Es una etiqueta (Opcional)
             public Boolean index; // Indica si el operador es indexado
             public String obj;
+            public bool isFormat4;
         }
 
         public MainForm()
@@ -116,6 +117,7 @@ namespace IDE_for_SIC_ASM
             result.num = 40;
 
             var instructDetected = false;
+            var isFormat4 = false;
 
             foreach (var t in tokens.GetTokens())
             {
@@ -123,9 +125,23 @@ namespace IDE_for_SIC_ASM
 
                 switch(tokenType)
                 {
-                    case "INSTRES":
-                        result.type = "INSTRUCTION";
+                    case "INSTRUNO":
+                        result.type = "INST1";
                         result.instruction = t.Text;
+                        instructDetected = true;
+                        break;
+                    case "INSFDOSRN":
+                    case "INSFDOSR":
+                    case "INSFDOSRR":
+                    case "'SVC'":
+                        result.type = "INST2";
+                        result.instruction = t.Text;
+                        instructDetected = true;
+                        break;
+                    case "INSTRES":
+                        result.type = isFormat4 ? "INST4" : "INST3";
+                        result.instruction = isFormat4 ? "+" : "";
+                        result.instruction += t.Text;
                         instructDetected = true;
                         break;
                     case "TIPODIRECTIVA":
@@ -176,6 +192,9 @@ namespace IDE_for_SIC_ASM
                         result.index = true;
                         result.op += ", X";
                         break;
+                    case "'+'":
+                        isFormat4 = true;
+                        break;
                 }
             }
 
@@ -208,10 +227,16 @@ namespace IDE_for_SIC_ASM
                 {
                     switch (result.type)
                     {
-                        case "INSTRUCTION":
+                        case "INST1":
+                            PCs.Add(PCs.Last() + 1); break;
+                        case "INST2":
+                            PCs.Add(PCs.Last() + 2); break;
+                        case "INST3":
                         case "WORD":
                         case "RSUB":
                             PCs.Add(PCs.Last() + 3); break;
+                        case "INST4":
+                            PCs.Add(PCs.Last() + 4); break;
                         case "BYTE": PCs.Add(PCs.Last() + result.num); break;
                         case "RESB": PCs.Add(PCs.Last() + result.num); break;
                         case "RESW": PCs.Add(PCs.Last() + result.num * 3); break;

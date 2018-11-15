@@ -1,5 +1,7 @@
 COPIATEST   START   28h
-FIRST       LDX     ZERO
+            SIO
+            SHIFTL   X,1
+FIRST       +LDX     ZERO
 MOVECH      LDCH    STRA, X
             STCH    STRB, X
             TIX     TAM

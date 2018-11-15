@@ -18,7 +18,7 @@ instruccion:(formatuno | formatdos | ('+'? formatres));
 RSUB:'RSUB';
 directiva:('BYTE' SEP BYTEOP | (TIPODIRECTIVA SEP NUM));
 formatuno: INSTRUNO;
-formatdos: (INSFDOSRR SEP REG SEP ',' SEP REG) | (INSFDOSRN SEP REG SEP ',' SEP NUM) | ('SVC' SEP REG SEP ',' SEP NUM) | (INSFDOSR SEP REG SEP ',' SEP NUM);
+formatdos: (INSFDOSRR SEP REG SEP ',' SEP REG) | (INSFDOSRN SEP REG SEP ',' SEP NUM) | ('SVC' SEP REG SEP ',' SEP NUM) | (INSFDOSR SEP REG);
 formatres: INSTRES SEP MODIR? ID INDEX?;
 
 /*
@@ -38,5 +38,5 @@ NUMHH : NUMH ('h' | 'H' );
 ID : ('a'..'z'|'A'..'Z')+;
 INDEX : (',' ' '* 'X');
 SEP:(' ' |'\t')+; 
-REG: 'A'|'X'|'L'|'B'|'S'|'T'|'F';
+REG: ('A'|'X'|'L'|'B'|'S'|'T'|'F');
 MODIR: '#' | '@';
