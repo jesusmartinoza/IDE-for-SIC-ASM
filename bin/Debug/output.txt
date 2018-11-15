@@ -1,1 +1,2 @@
-Linea 3 con error: mismatched input 'X' expecting REG
+Linea 10 con error: extraneous input ',    X' expecting {',', SEP}
+Linea 11 con error: extraneous input '2' expecting {SEP, NUMH}

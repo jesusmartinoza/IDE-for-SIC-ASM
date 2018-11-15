@@ -75,4 +75,3 @@ C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE 
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csproj.CoreCompileInputs.cache
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.exe
 C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.pdb
-C:\Users\hongo\Documents\Programacion de sistemas\IDE-for-SIC-ASM\obj\Debug\IDE for SIC ASM.csprojResolveAssemblyReference.cache
