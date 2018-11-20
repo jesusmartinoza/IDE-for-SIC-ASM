@@ -16,11 +16,10 @@ fin: SEP 'END' (SEP? ID)? FINL?;
 proposicion: ((ID SEP) | SEP)? (instruccion | directiva | RSUB) SEP? FINL;
 instruccion:(formatuno | formatdos | ('+'? formatres));
 RSUB:'RSUB';
-directiva:('BYTE' SEP BYTEOP | ('BASE' SEP (ID|NUM)) | (TIPODIRECTIVA SEP NUM));
+directiva:('BYTE' SEP BYTEOP | (TIPODIRECTIVA SEP NUM));
 formatuno: INSTRUNO;
-formatdos: (INSFDOSRR SEP REG SEP? ',' SEP? REG) | (INSFDOSRN SEP REG SEP? ',' SEP? NUMH) | ('SVC' SEP REG SEP? ',' SEP? NUM) | (INSFDOSR SEP REG);
-formatres: INSTRES SEP MODIR? (ID | NUM) INDEX?;
-REG: ('A'|'X'|'L'|'B'|'S'|'T'|'F');
+formatdos: (INSFDOSRR SEP REG SEP ',' SEP REG) | (INSFDOSRN SEP REG SEP ',' SEP NUM) | ('SVC' SEP REG SEP ',' SEP NUM) | (INSFDOSR SEP REG);
+formatres: INSTRES SEP MODIR? ID INDEX?;
 
 /*
  * Lexer Rules
@@ -39,4 +38,5 @@ NUMHH : NUMH ('h' | 'H' );
 ID : ('a'..'z'|'A'..'Z')+;
 INDEX : (',' ' '* 'X');
 SEP:(' ' |'\t')+; 
+REG: ('A'|'X'|'L'|'B'|'S'|'T'|'F');
 MODIR: '#' | '@';

@@ -61,7 +61,8 @@
             this.tbNumLoops = new System.Windows.Forms.TextBox();
             this.btnRunEffect = new MaterialSkin.Controls.MaterialRaisedButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tbEffects = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tbEffects = new System.Windows.Forms.Label();
             this.btnOpenFrom = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnOpenObj = new MaterialSkin.Controls.MaterialRaisedButton();
             this.gridRegisters = new System.Windows.Forms.DataGridView();
@@ -95,6 +96,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegisters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).BeginInit();
             this.SuspendLayout();
@@ -436,25 +438,31 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.tbEffects);
+            this.groupBox3.Controls.Add(this.panel1);
             this.groupBox3.ForeColor = System.Drawing.Color.LavenderBlush;
             this.groupBox3.Location = new System.Drawing.Point(10, 216);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(639, 144);
+            this.groupBox3.Size = new System.Drawing.Size(639, 182);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Effects Viewer";
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.tbEffects);
+            this.panel1.Location = new System.Drawing.Point(7, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(626, 157);
+            this.panel1.TabIndex = 0;
+            // 
             // tbEffects
             // 
-            this.tbEffects.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.tbEffects.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbEffects.Location = new System.Drawing.Point(6, 14);
-            this.tbEffects.Multiline = true;
+            this.tbEffects.AutoSize = true;
+            this.tbEffects.Location = new System.Drawing.Point(27, 20);
             this.tbEffects.Name = "tbEffects";
-            this.tbEffects.ReadOnly = true;
-            this.tbEffects.Size = new System.Drawing.Size(621, 119);
-            this.tbEffects.TabIndex = 11;
+            this.tbEffects.Size = new System.Drawing.Size(0, 13);
+            this.tbEffects.TabIndex = 0;
             // 
             // btnOpenFrom
             // 
@@ -663,7 +671,8 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegisters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).EndInit();
             this.ResumeLayout(false);
@@ -722,8 +731,9 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenFrom;
         private MaterialSkin.Controls.MaterialRaisedButton btnRunEffect;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox tbEffects;
         private System.Windows.Forms.TextBox tbNumLoops;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label tbEffects;
     }
 }
 

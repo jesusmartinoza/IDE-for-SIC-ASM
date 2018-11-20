@@ -593,8 +593,8 @@ namespace IDE_for_SIC_ASM
                     string operation = Instruction.Map(gridMapMemory, Registers["CP"]);
                     String targetAddrs = Instruction.Map(gridMapMemory, Registers["CP"] + 1) + Instruction.Map(gridMapMemory, Registers["CP"] + 2);
                     int content = int.Parse(targetAddrs, NumberStyles.HexNumber);
-                    tbEffects.Text += "\n" + InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, content);
-                    tbEffects.Text += "\n";
+                    tbEffects.Text +=  InstructionSet.Effect[int.Parse(operation, NumberStyles.HexNumber)].Effect(gridMapMemory, content);
+                    panel1.VerticalScroll.Value = panel1.VerticalScroll.Maximum;
                     UpdateRegGrid();
                 }
             }   

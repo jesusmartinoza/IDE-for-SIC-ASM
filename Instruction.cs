@@ -182,7 +182,7 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: J";
-            output += "\n Effect: CP <- " + m;
+            output += "\n Effect: CP <- " + m.ToString("X");
             output += "\n-----------------------------\n";
 
             return output;
@@ -204,7 +204,7 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JEQ";
-            output += "\n Effect: CP <- " + MainForm.Registers["CP"];
+            output += "\n Effect: CP <- " + MainForm.Registers["CP"].ToString("X");
             output += "\n-----------------------------\n";
 
             return output;
@@ -226,7 +226,7 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JGT";
-            output += "\n Effect: CP <- " + MainForm.Registers["CP"];
+            output += "\n Effect: CP <- " + MainForm.Registers["CP"].ToString("X");
             output += "\n-----------------------------\n";
 
             return output;
@@ -249,7 +249,7 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JLT";
-            output += "\n Effect: CP <- " + MainForm.Registers["CP"];
+            output += "\n Effect: CP <- " + MainForm.Registers["CP"].ToString("X");
             output += "\n-----------------------------\n";
 
             return output;
@@ -269,7 +269,7 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: JSUB";
-            output += "\n Effect: L <- (" + MainForm.Registers["L"] + ")";
+            output += "\n Effect: L <- (" + MainForm.Registers["L"].ToString("X") + ")";
             output += "\n\t CP <- (" + content + ")";
             output += "\n-----------------------------\n";
 
@@ -310,7 +310,7 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: LDCH";
-            output += "\n Effect: A[byte mas a la derecha] <- " + content;
+            output += "\n Effect: A[byte mas a la derecha] <- " + content.ToString("X");
             output += "\n-----------------------------\n";
 
             return output;
@@ -410,7 +410,7 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: RD";
-            output += "\n Effect: A[byte mas a la derecha] <- no sabemos profe :) " + content;
+            output += "\n Effect: A[byte mas a la derecha] <- no sabemos profe :) " + content.ToString("X");
             output += "\n-----------------------------\n";
 
             return output;
@@ -428,7 +428,7 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: RSUB";
-            output += "\n Effect: CP <- " + MainForm.Registers["L"];
+            output += "\n Effect: CP <- " + MainForm.Registers["L"].ToString("X");
             output += "\n-----------------------------\n";
 
             return output;
@@ -446,9 +446,16 @@ namespace IDE_for_SIC_ASM
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["A"], 3);
             MainForm.Registers["CP"] += 3;
 
+            if (m > 32768)
+            {
+                m -= 32768;
+                isIndex = true;
+                m += MainForm.Registers["X"];
+
+            }
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STA";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["A"].ToString("X").PadLeft(6, '0');
+            output += "\n Effect: " + m.ToString("X") + " <- " + MainForm.Registers["A"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -467,9 +474,16 @@ namespace IDE_for_SIC_ASM
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["A"], 1);
             MainForm.Registers["CP"] += 3;
 
+            if (m > 32768)
+            {
+                m -= 32768;
+                isIndex = true;
+                m += MainForm.Registers["X"];
+            }
+
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STCH";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["A"].ToString("X").PadLeft(6, '0');
+            output += "\n Effect: " + m.ToString("X") + " <- " + MainForm.Registers["A"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -486,10 +500,17 @@ namespace IDE_for_SIC_ASM
 
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["L"], 3);
             MainForm.Registers["CP"] += 3;
+            if (m > 32768)
+            {
+                m -= 32768;
+                isIndex = true;
+                m += MainForm.Registers["X"];
+
+            }
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STL";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["L"].ToString("X").PadLeft(6, '0');
+            output += "\n Effect: " + m.ToString("X")  + " <- " + MainForm.Registers["L"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -507,9 +528,17 @@ namespace IDE_for_SIC_ASM
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["SW"], 3);
             MainForm.Registers["CP"] += 3;
 
+            if (m > 32768)
+            {
+                m -= 32768;
+                isIndex = true;
+                m += MainForm.Registers["X"];
+
+            }
+
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STSW";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["SW"].ToString("X").PadLeft(6, '0');
+            output += "\n Effect: " + m.ToString("X")  + " <- " + MainForm.Registers["SW"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -526,10 +555,17 @@ namespace IDE_for_SIC_ASM
 
             ReplaceMapMemory(mapMemory, m, MainForm.Registers["X"], 3);
             MainForm.Registers["CP"] += 3;
+            if (m > 32768)
+            {
+                m -= 32768;
+                isIndex = true;
+                m += MainForm.Registers["X"];
+
+            }
 
             output += " => " + MainForm.Registers["X"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: STX";
-            output += "\n Effect: " + m + " .. " + (m + 2) + " <- " + MainForm.Registers["X"].ToString("X").PadLeft(6, '0');
+            output += "\n Effect: " + m.ToString("X")  + " <- " + MainForm.Registers["X"].ToString("X").PadLeft(6, '0');
             output += "\n-----------------------------\n";
 
             return output;
@@ -599,8 +635,8 @@ namespace IDE_for_SIC_ASM
 
             output += " => " + MainForm.Registers["CP"].ToString("X").PadLeft(6, '0');
             output += "\n Operator: TIX";
-            output += "\n Effect: X <- " + MainForm.Registers["X"] + "; (X) : " + content;
-            output += "\n SW = " + MainForm.Registers["SW"];
+            output += "\n Effect: X <- " + MainForm.Registers["X"].ToString("X") + "; (X) : " + content;
+            output += "\n SW = " + MainForm.Registers["SW"].ToString("X");
             output += "\n-----------------------------\n";
 
             return output;
