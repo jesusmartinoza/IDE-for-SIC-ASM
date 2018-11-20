@@ -23,6 +23,7 @@ namespace IDE_for_SIC_ASM
         int startAddr = 0;
         int length = 0;
         int endAddr = 0;
+        bool isXE = false;
         public static Dictionary<String, int> Registers = new Dictionary<String, int>()
         {
             {"A", 0xFFFF},
@@ -76,6 +77,9 @@ namespace IDE_for_SIC_ASM
 
         private void FillRow(int line, long PC, ParseResult result)
         {
+            if (isXE)
+                result.obj = "";
+
             String[] data =
             {
                     line.ToString(), PC.ToString("X").PadLeft(4, '0'), result.symbol, result.instruction, result.op, result.obj
@@ -195,6 +199,10 @@ namespace IDE_for_SIC_ASM
                     case "'+'":
                         isFormat4 = true;
                         break;
+                    case "'BASE'":
+                        result.type = "BASE";
+                        result.instruction = "BASE";
+                        break;
                 }
             }
 
@@ -258,28 +266,33 @@ namespace IDE_for_SIC_ASM
             progSize.Text = size.ToString("X");
 
             //Step 2
-            GenerateObj();
-            GenerateObjFile();
-            
-            if (tbErrors.Text == "")
-                MessageBox.Show("Your grammar rules! ");
-            else
-                File.WriteAllText("output.txt", tbErrors.Text);
+            if(!isXE)
+            {
+                GenerateObj();
+                GenerateObjFile();
 
-            GenerateMapMemory();
+                if (tbErrors.Text == "")
+                    MessageBox.Show("Your grammar rules! ");
+                else
+                    File.WriteAllText("output.txt", tbErrors.Text);
+
+                GenerateMapMemory();
+            }
         }
 
         private void OpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog OpenDialog = new OpenFileDialog {
-                Filter = "txt files (*.txt)|*.txt|asm files (*.asm)|*.asm",
-                FilterIndex = 2
+                Filter = "asmx files (*.asmx)|*.asmx|asm files (*.asm)|*.asm",
+                FilterIndex = 3
             };
 
             if (OpenDialog.ShowDialog() == DialogResult.OK)
             {
                 CurrentFileName.Text = OpenDialog.FileName;
                 TextBoxEditor.Text = File.ReadAllText(OpenDialog.FileName);
+                if(Path.GetExtension(OpenDialog.FileName) == ".asmx")
+                    isXE = true;
             }
         }
 
@@ -330,6 +343,7 @@ namespace IDE_for_SIC_ASM
 
         private void GenerateObj()
         {
+
             for (int i = 0; i < gridSourceCode.RowCount; i++)
             {
                 string objectCode = "----------";

@@ -1,1 +1,1 @@
-Linea 3 con error: mismatched input 'X' expecting REG
+Linea 12 con error: mismatched input 'W' expecting REG
