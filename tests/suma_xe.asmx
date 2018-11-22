@@ -8,6 +8,7 @@ LOOP    ADD TABLEUNO,X
     TIX COUNT
     JLT LOOP
     RMO A, L
+    SHIFTR  A,2h
     +STA    TOTAL
     CLEAR   W
 COUNT   RESW    1

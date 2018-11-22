@@ -18,7 +18,7 @@ instruccion:(formatuno | formatdos | ('+'? formatres));
 RSUB:'RSUB';
 directiva:('BYTE' SEP BYTEOP | ('BASE' SEP (ID|NUM)) | (TIPODIRECTIVA SEP NUM));
 formatuno: INSTRUNO;
-formatdos: (INSFDOSRR SEP REG SEP? ',' SEP? REG) | (INSFDOSRN SEP REG SEP? ',' SEP? NUMH) | ('SVC' SEP REG SEP? ',' SEP? NUM) | (INSFDOSR SEP REG);
+formatdos: (INSFDOSRR SEP REG SEP? ',' SEP? REG) | (INSFDOSRN SEP REG SEP? ',' SEP? NUM) | ('SVC' SEP NUM) | (INSFDOSR SEP REG);
 formatres: INSTRES SEP MODIR? (ID | NUM) INDEX?;
 
 /*

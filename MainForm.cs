@@ -24,6 +24,7 @@ namespace IDE_for_SIC_ASM
         int length = 0;
         int endAddr = 0;
         bool isXE = false;
+        
         public static Dictionary<String, int> Registers = new Dictionary<String, int>()
         {
             {"A", 0xFFFF},
@@ -122,12 +123,13 @@ namespace IDE_for_SIC_ASM
 
             var instructDetected = false;
             var isFormat4 = false;
+            bool isFormat2 = false;
 
             foreach (var t in tokens.GetTokens())
             {
                 String tokenType = parser.Vocabulary.GetDisplayName(t.Type);
 
-                switch(tokenType)
+                switch (tokenType)
                 {
                     case "INSTRUNO":
                         result.type = "INST1";
@@ -141,6 +143,13 @@ namespace IDE_for_SIC_ASM
                         result.type = "INST2";
                         result.instruction = t.Text;
                         instructDetected = true;
+                        isFormat2 = true;
+                        int start = tokens.GetTokens().IndexOf(t)+1;
+                        List<IToken> subListTokens = tokens.GetTokens().ToList().GetRange(start, tokens.GetTokens().Count() - start);
+                        string instrOp = "";
+                        foreach (var item in subListTokens)
+                            instrOp += (Text.Trim() == "\n" || item.Text.Trim() == "<EOF>") ? "" : item.Text.Trim();
+                        result.op = instrOp;
                         break;
                     case "INSTRES":
                         result.type = isFormat4 ? "INST4" : "INST3";
@@ -173,17 +182,21 @@ namespace IDE_for_SIC_ASM
                             result.num = (uint) Math.Ceiling((double)result.num / 2);
                         break;
                     case "NUM":
-                        result.op = t.Text;
-                        if (t.Text.Last() == 'H' || t.Text.Last() == 'h')
+                        if(!isFormat2)
                         {
-                            uint.TryParse(t.Text.Remove(t.Text.Count() - 1),
-                                NumberStyles.HexNumber,
-                                CultureInfo.CurrentCulture,
-                                out result.num);
-                        } else
-                        {
-                            success = uint.TryParse(t.Text,
-                                out result.num);
+                            result.op = t.Text;
+                            if (t.Text.Last() == 'H' || t.Text.Last() == 'h')
+                            {
+                                uint.TryParse(t.Text.Remove(t.Text.Count() - 1),
+                                    NumberStyles.HexNumber,
+                                    CultureInfo.CurrentCulture,
+                                    out result.num);
+                            }
+                            else
+                            {
+                                success = uint.TryParse(t.Text,
+                                    out result.num);
+                            }
                         }
                         break;
                     case "ID":
@@ -193,8 +206,15 @@ namespace IDE_for_SIC_ASM
                             result.symbol = t.Text;
                         break;
                     case "INDEX":
-                        result.index = true;
-                        result.op += ", X";
+                        if(isFormat2)
+                        {
+
+                        }
+                        else
+                        {
+                            result.index = true;
+                            result.op += ", X";
+                        }
                         break;
                     case "'+'":
                         isFormat4 = true;
