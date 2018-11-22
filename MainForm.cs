@@ -24,6 +24,8 @@ namespace IDE_for_SIC_ASM
         int length = 0;
         int endAddr = 0;
         bool isXE = false;
+        bool canRunObj = false;
+
         public static Dictionary<String, int> Registers = new Dictionary<String, int>()
         {
             {"A", 0xFFFF},
@@ -73,6 +75,8 @@ namespace IDE_for_SIC_ASM
                 };
                 gridRegisters.Rows.Add(data);
             }
+
+            tabsimGrid.Rows[0].DataGridView.ForeColor = Color.Black;
         }
 
         private void FillRow(int line, long PC, ParseResult result)
@@ -85,6 +89,8 @@ namespace IDE_for_SIC_ASM
                     line.ToString(), PC.ToString("X").PadLeft(4, '0'), result.symbol, result.instruction, result.op, result.obj
             };
             gridSourceCode.Rows.Add(data);
+            
+            gridSourceCode.Rows[gridSourceCode.Rows.Count - 1].DataGridView.ForeColor = Color.Black;
         }
 
         private ParseResult ParseLine(String line, int lineNumber, String type)
@@ -200,6 +206,7 @@ namespace IDE_for_SIC_ASM
                         isFormat4 = true;
                         break;
                     case "'BASE'":
+                        instructDetected = true;
                         result.type = "BASE";
                         result.instruction = "BASE";
                         break;
@@ -212,8 +219,15 @@ namespace IDE_for_SIC_ASM
         private void Run_Click(object sender, EventArgs e)
         {
             PCs.Clear();
-            // Store program counters of every line
+            canRunObj = false;
 
+            if (CurrentFileName.Text == "...")
+            {
+                MessageBox.Show("To run the assembly you need to open an ASM or ASMX file");
+                return;
+            }
+
+            // Store program counters of every line
             string contents = File.ReadAllText(CurrentFileName.Text);
             List<String> lines = contents.Replace("\r", " ").Split('\n').ToList();
             tbErrors.Text = "";
@@ -291,8 +305,8 @@ namespace IDE_for_SIC_ASM
             {
                 CurrentFileName.Text = OpenDialog.FileName;
                 TextBoxEditor.Text = File.ReadAllText(OpenDialog.FileName);
-                if(Path.GetExtension(OpenDialog.FileName) == ".asmx")
-                    isXE = true;
+
+                isXE = Path.GetExtension(OpenDialog.FileName) == ".asmx";
             }
         }
 
@@ -556,6 +570,8 @@ namespace IDE_for_SIC_ASM
 
         private void BtnOpenObj_Click(object sender, EventArgs e)
         {
+            canRunObj = true;
+
             //TOOD cargar archivo
             string [] strOutput = objFileTextBox.Text.Split('\n');
             for (int i = 1; i < strOutput.Count()-1; i++)
@@ -598,6 +614,12 @@ namespace IDE_for_SIC_ASM
 
         private void btnRunEffect_Click(object sender, EventArgs e)
         {
+            if (!canRunObj)
+            {
+                MessageBox.Show("To run your program first CHARGE OBJ :)");
+                return;
+            }
+
             int nLoops = (tbNumLoops.Text == "") ? 1 : int.Parse(tbNumLoops.Text);
             tbNumLoops.Text = "";
             if(Registers["CP"] <= endAddr)

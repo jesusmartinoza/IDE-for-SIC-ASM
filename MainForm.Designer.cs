@@ -30,8 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRunASM = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
@@ -44,12 +45,7 @@
             this.CurrentFileName = new MaterialSkin.Controls.MaterialLabel();
             this.TextBoxEditor = new FastColoredTextBoxNS.FastColoredTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.objFileTextBox = new System.Windows.Forms.RichTextBox();
-            this.progSize = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabsimGrid = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.gridSourceCode = new System.Windows.Forms.DataGridView();
             this.Line = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +53,13 @@
             this.INSTRUCTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ADDRESS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OBJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.objFileTextBox = new System.Windows.Forms.RichTextBox();
+            this.progSize = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabsimGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tbNumLoops = new System.Windows.Forms.TextBox();
             this.btnRunEffect = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -86,19 +89,23 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.materialTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).BeginInit();
+            this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegisters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRunASM
@@ -135,7 +142,7 @@
             this.materialTabControl.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl.Name = "materialTabControl";
             this.materialTabControl.SelectedIndex = 0;
-            this.materialTabControl.Size = new System.Drawing.Size(834, 433);
+            this.materialTabControl.Size = new System.Drawing.Size(834, 446);
             this.materialTabControl.TabIndex = 3;
             this.materialTabControl.TabStop = false;
             this.materialTabControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AutoRun);
@@ -148,7 +155,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(826, 407);
+            this.tabPage1.Size = new System.Drawing.Size(826, 420);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Editor & Errors";
             // 
@@ -156,9 +163,9 @@
             // 
             this.groupBox2.Controls.Add(this.tbErrors);
             this.groupBox2.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.groupBox2.Location = new System.Drawing.Point(10, 311);
+            this.groupBox2.Location = new System.Drawing.Point(14, 317);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(807, 93);
+            this.groupBox2.Size = new System.Drawing.Size(803, 93);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Warnings & Errors";
@@ -181,9 +188,9 @@
             this.groupBox1.Controls.Add(this.CurrentFileName);
             this.groupBox1.Controls.Add(this.TextBoxEditor);
             this.groupBox1.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.groupBox1.Location = new System.Drawing.Point(8, 6);
+            this.groupBox1.Location = new System.Drawing.Point(14, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(809, 299);
+            this.groupBox1.Size = new System.Drawing.Size(803, 299);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Code";
@@ -263,84 +270,27 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.objFileTextBox);
-            this.tabPage2.Controls.Add(this.progSize);
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.tabsimGrid);
-            this.tabPage2.Controls.Add(this.gridSourceCode);
+            this.tabPage2.Controls.Add(this.groupBox6);
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(826, 407);
+            this.tabPage2.Size = new System.Drawing.Size(826, 420);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SIC output";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // objFileTextBox
+            // groupBox5
             // 
-            this.objFileTextBox.BackColor = System.Drawing.Color.DimGray;
-            this.objFileTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.objFileTextBox.Location = new System.Drawing.Point(6, 294);
-            this.objFileTextBox.Name = "objFileTextBox";
-            this.objFileTextBox.Size = new System.Drawing.Size(811, 109);
-            this.objFileTextBox.TabIndex = 5;
-            this.objFileTextBox.Text = "";
-            // 
-            // progSize
-            // 
-            this.progSize.AutoSize = true;
-            this.progSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.progSize.ForeColor = System.Drawing.SystemColors.Control;
-            this.progSize.Location = new System.Drawing.Point(771, 25);
-            this.progSize.Name = "progSize";
-            this.progSize.Size = new System.Drawing.Size(20, 17);
-            this.progSize.TabIndex = 3;
-            this.progSize.Text = "...";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(649, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Program Size:";
-            // 
-            // tabsimGrid
-            // 
-            this.tabsimGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.tabsimGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tabsimGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tabsimGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.tabsimGrid.Location = new System.Drawing.Point(520, 22);
-            this.tabsimGrid.Name = "tabsimGrid";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.tabsimGrid.RowHeadersVisible = false;
-            this.tabsimGrid.Size = new System.Drawing.Size(123, 267);
-            this.tabsimGrid.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Symbol";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Adrs";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 60;
+            this.groupBox5.Controls.Add(this.gridSourceCode);
+            this.groupBox5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox5.Location = new System.Drawing.Point(16, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(524, 282);
+            this.groupBox5.TabIndex = 7;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Parsed Code";
             // 
             // gridSourceCode
             // 
@@ -354,18 +304,18 @@
             this.INSTRUCTION,
             this.ADDRESS,
             this.OBJ});
-            this.gridSourceCode.Location = new System.Drawing.Point(6, 21);
+            this.gridSourceCode.Location = new System.Drawing.Point(6, 19);
             this.gridSourceCode.Name = "gridSourceCode";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSourceCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridSourceCode.RowHeadersVisible = false;
-            this.gridSourceCode.Size = new System.Drawing.Size(506, 267);
+            this.gridSourceCode.Size = new System.Drawing.Size(506, 257);
             this.gridSourceCode.TabIndex = 0;
             // 
             // Line
@@ -400,6 +350,92 @@
             this.OBJ.HeaderText = "OBJ";
             this.OBJ.Name = "OBJ";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.objFileTextBox);
+            this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox4.Location = new System.Drawing.Point(14, 292);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(803, 132);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "OBJ File";
+            // 
+            // objFileTextBox
+            // 
+            this.objFileTextBox.BackColor = System.Drawing.Color.DimGray;
+            this.objFileTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.objFileTextBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.objFileTextBox.Location = new System.Drawing.Point(6, 20);
+            this.objFileTextBox.Name = "objFileTextBox";
+            this.objFileTextBox.Size = new System.Drawing.Size(788, 104);
+            this.objFileTextBox.TabIndex = 5;
+            this.objFileTextBox.Text = "";
+            // 
+            // progSize
+            // 
+            this.progSize.AutoSize = true;
+            this.progSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.progSize.ForeColor = System.Drawing.SystemColors.Control;
+            this.progSize.Location = new System.Drawing.Point(172, 247);
+            this.progSize.Name = "progSize";
+            this.progSize.Size = new System.Drawing.Size(20, 17);
+            this.progSize.TabIndex = 3;
+            this.progSize.Text = "...";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(50, 244);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Program Size:";
+            // 
+            // tabsimGrid
+            // 
+            this.tabsimGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.tabsimGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tabsimGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tabsimGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tabsimGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            this.tabsimGrid.Location = new System.Drawing.Point(49, 20);
+            this.tabsimGrid.Name = "tabsimGrid";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(67)))), ((int)(((byte)(77)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabsimGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.tabsimGrid.RowHeadersVisible = false;
+            this.tabsimGrid.Size = new System.Drawing.Size(153, 205);
+            this.tabsimGrid.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Symbol";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Adrs";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 60;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.tbNumLoops);
@@ -411,7 +447,7 @@
             this.tabPage3.Controls.Add(this.gridMapMemory);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(826, 407);
+            this.tabPage3.Size = new System.Drawing.Size(826, 420);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Map Memory";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -645,6 +681,19 @@
             this.Column15.Name = "Column15";
             this.Column15.Width = 35;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label1);
+            this.groupBox6.Controls.Add(this.progSize);
+            this.groupBox6.Controls.Add(this.tabsimGrid);
+            this.groupBox6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox6.Location = new System.Drawing.Point(560, 7);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(257, 279);
+            this.groupBox6.TabIndex = 8;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "TABSIM & Info";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -665,9 +714,10 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxEditor)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).EndInit();
+            this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridSourceCode)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tabsimGrid)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -675,6 +725,8 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegisters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridMapMemory)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -734,6 +786,9 @@
         private System.Windows.Forms.TextBox tbNumLoops;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label tbEffects;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }
 

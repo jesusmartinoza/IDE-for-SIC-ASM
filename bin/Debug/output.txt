@@ -1,1 +1,5 @@
-Linea 12 con error: mismatched input 'W' expecting REG
+Linea 4 con error: mismatched input 'LD' expecting {'+', 'BYTE', 'BASE', 'SVC', 'RSUB', INSTRUNO, INSFDOSRN, INSFDOSR, INSFDOSRR, INSTRES, TIPODIRECTIVA}
+Linea 17 con error: mismatched input 'C' expecting BYTEOP
+Linea 23 con error: mismatched input 'X' expecting BYTEOP
+Linea 24 con error: mismatched input 'ASD' expecting BYTEOP
+Linea 40 con error: mismatched input '\n' expecting {'+', 'BYTE', 'BASE', 'SVC', 'RSUB', INSTRUNO, INSFDOSRN, INSFDOSR, INSFDOSRR, INSTRES, TIPODIRECTIVA}
